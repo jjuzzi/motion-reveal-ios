@@ -1,0 +1,30 @@
+name: Feature request
+description: Propose a new app capability or interaction.
+title: "[Feature]: "
+labels: ["feature"]
+body:
+  - type: textarea
+    id: outcome
+    attributes:
+      label: Desired outcome
+      description: What should the user be able to do?
+    validations:
+      required: true
+  - type: textarea
+    id: notes
+    attributes:
+      label: Notes
+      description: Screens, states, motion references, constraints, or examples.
+    validations:
+      required: false
+  - type: textarea
+    id: acceptance
+    attributes:
+      label: Acceptance criteria
+      description: How will we know this is done?
+      placeholder: |
+        - User can...
+        - Animation...
+        - Build passes...
+    validations:
+      required: false
