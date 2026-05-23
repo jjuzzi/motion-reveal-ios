@@ -1,0 +1,25 @@
+# Xcode
+DerivedData/
+*.xcuserstate
+*.xcworkspace/xcuserdata/
+*.xcodeproj/xcuserdata/
+*.xcodeproj/project.xcworkspace/xcuserdata/
+*.moved-aside
+
+# Swift Package Manager
+.build/
+.swiftpm/
+
+# macOS
+.DS_Store
+
+# Local secrets and private assets
+.env
+.env.*
+Secrets.xcconfig
+PrivateAssets/
+*.riv
+*.lottie
+
+# Keep generated dependency pins when intentionally committed.
+!Package.resolved
