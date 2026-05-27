@@ -1,5 +1,6 @@
 # Xcode
 DerivedData/
+build/
 *.xcuserstate
 *.xcworkspace/xcuserdata/
 *.xcodeproj/xcuserdata/
@@ -20,6 +21,8 @@ Secrets.xcconfig
 PrivateAssets/
 *.riv
 *.lottie
+!MotionReveal/Resources/Rive/
+!MotionReveal/Resources/Rive/playdate_disc_intake.riv
 
 # Keep generated dependency pins when intentionally committed.
 !Package.resolved
