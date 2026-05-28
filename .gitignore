@@ -1,5 +1,6 @@
 # Xcode
 DerivedData/
+DerivedDataMCP/
 build/
 *.xcuserstate
 *.xcworkspace/xcuserdata/
@@ -11,8 +12,16 @@ build/
 .build/
 .swiftpm/
 
+# Node/Remotion prototypes
+node_modules/
+.cache/
+
 # macOS
 .DS_Store
+
+# Local agent/editor state
+.omc/
+.vscode/settings.json
 
 # Local secrets and private assets
 .env

@@ -1,0 +1,1379 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		003F1D5A45314FADE72BF5E9 /* ProjectDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC6BF486F954D55C0F397B37 /* ProjectDetailView.swift */; };
+		021D036B84C55A6B1257F33D /* NowPlayingLiveActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09757C4E8024C5BC44367B3C /* NowPlayingLiveActivity.swift */; };
+		044FC06B4C90EF12861D432A /* MotionRevealLiveActivityWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 330F3F31CDD49A6E3092B601 /* MotionRevealLiveActivityWidget.swift */; };
+		0529F9FE8349723076D3F3F5 /* MusicWorkspaceModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 746C70F506615C4E68C15F2E /* MusicWorkspaceModelTests.swift */; };
+		05D6DAA0F6B9F04D3FBB19B9 /* WorkspaceDocumentPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F0A3E173AB67FADE0F01BAD /* WorkspaceDocumentPicker.swift */; };
+		07886CC3679D537A948FD751 /* WorkspaceHeroMotion.swift in Sources */ = {isa = PBXBuildFile; fileRef = A002C2644C21770A37426881 /* WorkspaceHeroMotion.swift */; };
+		082441B26718AAF4D43202B2 /* IslandLoadedPulse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 922D05AB150579DA3EA6A80E /* IslandLoadedPulse.swift */; };
+		08761712B12C82E47925678C /* MotionRevealLiveActivity.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 00216A7DBE2ED8D920437678 /* MotionRevealLiveActivity.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		08A34D0F110B99ECBB1B17E5 /* IridescentEffects.swift in Sources */ = {isa = PBXBuildFile; fileRef = B229B7AC30E4F7C5DF799569 /* IridescentEffects.swift */; };
+		0AFC8915D2D0AB04D6B15419 /* WorkspaceImportError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B8FDCAF920AB268056024FD /* WorkspaceImportError.swift */; };
+		0CB847C1624725199A8BE169 /* FlightTrail.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF9FC4A60CD7A67FDA5AEE3E /* FlightTrail.swift */; };
+		0F8AF1A666004D5FBA4D22DF /* WorkspaceActionSheets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D75ED5B56251051A8096536 /* WorkspaceActionSheets.swift */; };
+		11889C1A9988FE4BE5D265C5 /* TimedLyrics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A095AD6720D768605B8641 /* TimedLyrics.swift */; };
+		19622FF3253C03E1A7FF48DB /* MotionRevealDeepLink.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FF74482AE828988A210B404 /* MotionRevealDeepLink.swift */; };
+		1B56570D2389CE0B29BD49DF /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1650A2983F2D291579683EE /* OnboardingView.swift */; };
+		1B9D1B6C1E34262102D70787 /* LoopingVideoPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74DFE8871033BF7FA44BD57E /* LoopingVideoPlayer.swift */; };
+		1DCDBC6A5820257E25D01108 /* MotionRevealCarPlaySceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E44D45BCD3F752F98228B2F /* MotionRevealCarPlaySceneDelegate.swift */; };
+		28DE13E64A1670A50491DB31 /* LibraryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 825BD9A88933EB0972EF41BA /* LibraryView.swift */; };
+		2B81A3C90957077633E224B9 /* RiveRuntimeSupport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99F0C36DE1CD369A41260CBF /* RiveRuntimeSupport.swift */; };
+		2D0D907B01BA6254DB19905A /* RitualOverlayViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA30600B09FC206A12B737EE /* RitualOverlayViews.swift */; };
+		2D9B19DF19BC3E2AC6B49EFF /* IslandSlotViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAF507AA9F68AC010BD9D804 /* IslandSlotViews.swift */; };
+		2F94F9A6E04A9EB996B50258 /* StudioMetalStarfield.swift in Sources */ = {isa = PBXBuildFile; fileRef = 260DD78F5C76529A7F823461 /* StudioMetalStarfield.swift */; };
+		30865CD10E2AC4A9E803835A /* IslandSlotHardware.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01A54B48F5E7C4675A894093 /* IslandSlotHardware.swift */; };
+		31857C91173B8142502380B1 /* WorkspaceImportContentPolicy.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE948B9D0C05AE1D442DBA34 /* WorkspaceImportContentPolicy.swift */; };
+		31D1E67E7908681B3FDF8CA6 /* DynamicSlotPullDecision.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65B3813794CE6A141D9A603A /* DynamicSlotPullDecision.swift */; };
+		3849B28EFB6E21BBDA3E3981 /* DebugLaunchStateReset.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A9DB47DFF9ACAED32BDBA8A /* DebugLaunchStateReset.swift */; };
+		3B2AC8A3019DEE78E17A85EC /* StudioDeviceTilt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AD7DBCE0626A7657CC5857A /* StudioDeviceTilt.swift */; };
+		3E6AEF0A889AE92ED4CB6778 /* WorkspaceImportProcessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F10DB4BB995B50B78CE9EA8D /* WorkspaceImportProcessor.swift */; };
+		3FCF108D8B1F4E1FEE2CA893 /* WorkspaceStatusViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E8732E80DA1DF7F77934789 /* WorkspaceStatusViews.swift */; };
+		4251F055A57AB0B1D531F559 /* WorkspaceRootChromeViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = E634D9356D1C4E7DCAA95F08 /* WorkspaceRootChromeViews.swift */; };
+		4267834E56E9AD9BAF51F81E /* RemoteCommandController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 162AC2A7BC0B834D9F66751B /* RemoteCommandController.swift */; };
+		46A0EDD46F8ADED71782BE60 /* DiscSideProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31F7B5A1C73EDE0256533552 /* DiscSideProfile.swift */; };
+		472AEEA528C2FCC47B29B1DB /* MusicWorkspaceModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 767CBD38315037EB9B44B275 /* MusicWorkspaceModels.swift */; };
+		48B58BFB53FDC28E6E3359BD /* NowPlayingActivityAttributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB7285AD66593AD80070BCDB /* NowPlayingActivityAttributes.swift */; };
+		49C22488F0D552CAC1375C9A /* MusicLibraryStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23DC38D4C3F3FC814E7E10C3 /* MusicLibraryStore.swift */; };
+		4A8ADC61C4846FA94C6393A4 /* ShaderKitUI in Frameworks */ = {isa = PBXBuildFile; productRef = 7AD65A461B65D32FD11D0D95 /* ShaderKitUI */; };
+		4D7B8ABDAA582328B22FE456 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 91614332FE58BE2DAC6BF546 /* Assets.xcassets */; };
+		51B821DA0C55BEC7B8EC97CE /* MotionRevealCarPlayRootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED9BFAEA03AA8550FC47D9EE /* MotionRevealCarPlayRootView.swift */; };
+		592F049C163221233E912E95 /* WorkspaceLaunchAutomation.swift in Sources */ = {isa = PBXBuildFile; fileRef = F230F4A9E138548EF0007B1A /* WorkspaceLaunchAutomation.swift */; };
+		5E5D200481E3D239ED552624 /* DebugSwiftBootstrap.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBBD88AADD7ADBD1227DECE5 /* DebugSwiftBootstrap.swift */; };
+		626A14FAE846725537FE2E4E /* DiscPlayerMouth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A4F977C2DD2D8AE015D3BFA /* DiscPlayerMouth.swift */; };
+		63476C995457A407E9B1646F /* playdate_disc_intake.riv in Resources */ = {isa = PBXBuildFile; fileRef = 7F98C331C67DBD35055FE3DF /* playdate_disc_intake.riv */; };
+		63ADDB057D28A5BD6CBEAD4D /* NowPlayingActivityAttributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB7285AD66593AD80070BCDB /* NowPlayingActivityAttributes.swift */; };
+		64E133931A47229CBD2722CA /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = 7DB225DE8F56802956FA7ED4 /* Lottie */; };
+		65C4E8F3CC4F2608F819C08F /* DynamicNotchRevealView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81F8237BDEBD72F3EB8D035C /* DynamicNotchRevealView.swift */; };
+		66D1EAE2D257FECC33218593 /* SleeveArtworkViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA7BF2F3C6B1725C3604C8AA /* SleeveArtworkViews.swift */; };
+		6DB81D4F72E6C9393B2BF6DB /* LRCParserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA6DD7BF05307419CB5CD273 /* LRCParserTests.swift */; };
+		6EF021EA9C67332A67632EA7 /* WorkspacePlaybackRuntime.swift in Sources */ = {isa = PBXBuildFile; fileRef = 028AB449EF669975891BE4A8 /* WorkspacePlaybackRuntime.swift */; };
+		6FE8C76464B2A311631CFCA7 /* StudioDrawerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 437F46A5A0A227C502200CA4 /* StudioDrawerView.swift */; };
+		702383C7076C806283DC6B96 /* WorkspaceImportFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9691CD426FD3174F127AA9CF /* WorkspaceImportFlow.swift */; };
+		7638D07BCA99D999ECAA9E35 /* WorkspaceDeepLinkRoute.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9877EB870FB40A93FB67986 /* WorkspaceDeepLinkRoute.swift */; };
+		7A11442BA2B2F76C53C1132A /* WorkspaceImportWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CEE6BB3FC11B15A2DAF5A48 /* WorkspaceImportWorker.swift */; };
+		7C41BD44ED0BDE59A8BD71F6 /* WaveformMarkerViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1DBA2D51389FBA318BCDD8F /* WaveformMarkerViews.swift */; };
+		7CD8A01068A3EC1795FEBB7B /* WorkspaceSongContainerCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 312AAC19DB740703BFA88C5A /* WorkspaceSongContainerCoordinator.swift */; };
+		7F1FFC35537B3B1222310968 /* WorkspacePlaybackCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C16124B8A4C77D7C0D41263 /* WorkspacePlaybackCoordinator.swift */; };
+		812643C6CAD112B2470818B4 /* DynamicNotchRevealDemoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67AA6926050B2EA9D30ED123 /* DynamicNotchRevealDemoView.swift */; };
+		8329A71BB7C2DDAE25C9D805 /* MotionRevealIntents.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCCECEA079615756CB433FD9 /* MotionRevealIntents.swift */; };
+		84D942546F9D7571DC370309 /* NowPlayingVisuals.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1202079BBC8D0C4A26E523E /* NowPlayingVisuals.swift */; };
+		89B2CCB0B8CA135EBE3BD66A /* WorkspaceChromeViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66B58D26381BF2F0018C253C /* WorkspaceChromeViews.swift */; };
+		8A3A5FB40BAB90E3C170F97F /* MotionArtworkPreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83FBC121701C225FDCE03974 /* MotionArtworkPreviewView.swift */; };
+		92D4CF0E22A2DEE475FF16C9 /* NowPlayingInfoPublisher.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0CB0F06F6F897F818449A6A /* NowPlayingInfoPublisher.swift */; };
+		94D60EEB1F2A9ABCD3FBE880 /* StudioDiscMaterialProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 373897AF553195F414D8819B /* StudioDiscMaterialProfile.swift */; };
+		954B92FB7B1EDE7B3AE99DC3 /* InsertionHandoffGlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAE917828626C95BE8A95287 /* InsertionHandoffGlow.swift */; };
+		963E8808647FF039908E8D24 /* WorkspaceDynamicIslandCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47D3A28D57E1602ABFBC8D05 /* WorkspaceDynamicIslandCoordinator.swift */; };
+		967AA1268D907488646E98A7 /* SleeveImageLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = F76A0DEA2381586A1C7BA58C /* SleeveImageLoader.swift */; };
+		96A7FC3D919401F84F876D23 /* WorkspaceSettingsSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA8FC8824A245DDC04DF9DF0 /* WorkspaceSettingsSheet.swift */; };
+		96BA2342D2B324208A28E38D /* ShaderKit in Frameworks */ = {isa = PBXBuildFile; productRef = B8D3080A1457ADB9A80E0ACF /* ShaderKit */; };
+		9866AB7C9612D35B25E00010 /* WorkspaceTrackMutationExecutor.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5E7BE6F83C4F80127B93914 /* WorkspaceTrackMutationExecutor.swift */; };
+		9868C9BE0DD09D8B6C154EFB /* RiveRuntime in Frameworks */ = {isa = PBXBuildFile; productRef = 0CC3B1751BE90E182D4B7E0C /* RiveRuntime */; };
+		9DD5D665754505B3ADE0AD4D /* MotionRevealFirstRunUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DCAFBA99D04753E09D18A64 /* MotionRevealFirstRunUITests.swift */; };
+		9E58F23E19B3E5AE0E856A2B /* AudioPlaybackController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DD1332BE339ECFBE1343DF /* AudioPlaybackController.swift */; };
+		A266F8858D282E2BDF329502 /* MotionArtworkPreviewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4EE24F7C9929E56E2AC8FB5 /* MotionArtworkPreviewModel.swift */; };
+		A30401F7F810036F69D5B7A1 /* CreatedAlbumDiscPromptView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 126A14B13A544D51D611F9FC /* CreatedAlbumDiscPromptView.swift */; };
+		A406C9FC8AE34F380FC74F3E /* SongContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E917F9A1F997277E0C8791F2 /* SongContainerView.swift */; };
+		A91B1E9D4E22A9A40E4F48DA /* MotionRuntimeAvailability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08380BEBC9DE8F3E56A294FC /* MotionRuntimeAvailability.swift */; };
+		AAB936CB8A0CF13085BF5D14 /* WorkspaceExportBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9E028BCD0BADEEE9445DB17 /* WorkspaceExportBuilder.swift */; };
+		AB3AD50E9AE9FB0E01A8ED6C /* AudioPlaybackControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 191B47529874738B85D80524 /* AudioPlaybackControllerTests.swift */; };
+		AD267057C96196990A4F10CA /* LaunchDiscRiveIntroView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF010CB0FC3FDBB4D74327AE /* LaunchDiscRiveIntroView.swift */; };
+		AD7CE8FF1A303750A6394E1C /* StudioDisc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0659F20250BBD10CFC2EA5C3 /* StudioDisc.swift */; };
+		ADC9A7C8408433A79CAC143E /* WorkspaceActionMenuContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E922CFEB342DB19922C9ED9 /* WorkspaceActionMenuContent.swift */; };
+		AE6E77C24CF7FF6CC5F47F19 /* LaunchAlbumSetupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 171441D3DE6D17CDC1FC5E56 /* LaunchAlbumSetupView.swift */; };
+		AF7281784A80757AFF878FE1 /* StudioImportNotchTray.swift in Sources */ = {isa = PBXBuildFile; fileRef = E55AEB2604805B2887CB4B4E /* StudioImportNotchTray.swift */; };
+		AFD866750F1006C3ED9E2A13 /* WorkspaceExportItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E2F6678EF872F5026E35877 /* WorkspaceExportItem.swift */; };
+		B14C0CB4C076DB140352DDD8 /* DynamicNotchRevealFlowTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E880A44E4BD9DE23D8C5548 /* DynamicNotchRevealFlowTests.swift */; };
+		B7ABBEA4E38CFA9A54A673B6 /* WorkspaceRitualTiming.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CE8A4E03ED9CD31DBBD996C /* WorkspaceRitualTiming.swift */; };
+		BC64A0660A4093EF23332C3C /* LaunchDiscIntroView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFB5C6415ED4AA3B92ABD4E3 /* LaunchDiscIntroView.swift */; };
+		BC88F24DB35C4CCEBC2D29C8 /* StudioGlowSweep.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CD138EDFD6004CFD0705CA1 /* StudioGlowSweep.swift */; };
+		BE53CAB22FECA318F2C6BE1F /* DiscSlotOccluder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 005F156D059887ECEA0B7340 /* DiscSlotOccluder.swift */; };
+		BEBD7C835FC862EAD9AD3005 /* DynamicNotchRevealFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1418EBC4A255F8971D00A82F /* DynamicNotchRevealFlow.swift */; };
+		C1432FCBFAD838EE94FA4189 /* WorkspaceLiveActivitySync.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC84E3FEB975D56CFF2283E0 /* WorkspaceLiveActivitySync.swift */; };
+		C4BDB0785A9D7B1B64EE7166 /* PlaybackProgress.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DD3A17D2578243FB43E3B3C /* PlaybackProgress.swift */; };
+		C6D97BB2BCF0D0BBE5FB111A /* WorkspaceImportSelection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 232B908929DC754C4EC93B48 /* WorkspaceImportSelection.swift */; };
+		C723F4C523B9962ABF4AD4A5 /* SampleMotionArtwork.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 3C4E9D56848FFDF8EE81D48F /* SampleMotionArtwork.mp4 */; };
+		C7ECDB494477832646D7806B /* StudioMetalStarfield.metal in Sources */ = {isa = PBXBuildFile; fileRef = D2FDECC2FB1824540D9975A5 /* StudioMetalStarfield.metal */; };
+		C921D10A6EA7920A62D48B6A /* MotionRevealIntents.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCCECEA079615756CB433FD9 /* MotionRevealIntents.swift */; };
+		CA9FE5B968EFBBBB15882FE5 /* Inferno in Frameworks */ = {isa = PBXBuildFile; productRef = 21EB2F88B0E44645605969FE /* Inferno */; };
+		CE494803747BF40216850C3E /* MiniPlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD0967C4C54BE5A7E5562403 /* MiniPlayerView.swift */; };
+		D0E14D5A276E192DC2584104 /* WorkspaceMarkerDraft.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8D2C70C48D8EEF3A69752C2 /* WorkspaceMarkerDraft.swift */; };
+		D2971B495D548268B935CFA8 /* WorkspaceRenameDraft.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFC272A7F102D850970DCB2A /* WorkspaceRenameDraft.swift */; };
+		D99DAB66ACB29D2336CB55B0 /* MusicWorkspaceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 723713E41D6EDD3CA891F95B /* MusicWorkspaceView.swift */; };
+		D9BC5FE16293E273494AA86A /* WorkspaceDestructiveActionExecutor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D347D76DD3D4610E46139CD /* WorkspaceDestructiveActionExecutor.swift */; };
+		DB954DB69E3FAC5F7683E754 /* WorkspacePresentationModifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52FBB5607CCF929864475C69 /* WorkspacePresentationModifiers.swift */; };
+		DCDD8AF298B20AF536AF7F00 /* DynamicSlotPullResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = E314491C8DE782446D9B8808 /* DynamicSlotPullResponse.swift */; };
+		E597E9D3F81394BE13735AB2 /* StudioBrandViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = F81C3E3FFC648155854D3B5F /* StudioBrandViews.swift */; };
+		E6998D61ABB7491C033C1777 /* BlankCDIridescence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D9B189A97DC6E45FD03DDCA /* BlankCDIridescence.swift */; };
+		E73685B23BFD45DE0E85FC17 /* WorkspaceLibraryPersistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3988E520F14658E1335C1B20 /* WorkspaceLibraryPersistence.swift */; };
+		EE5C5ADBC61CA60868521571 /* WorkspaceProjectMutationExecutor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2327CE17913390479771229F /* WorkspaceProjectMutationExecutor.swift */; };
+		EE64112DB270933B4ABBE28E /* MotionRevealDeepLink.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FF74482AE828988A210B404 /* MotionRevealDeepLink.swift */; };
+		EEC322EF84DCF10B8A19597F /* StudioDiscMaterialModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25D5E2302B4B329DFE4C8BF8 /* StudioDiscMaterialModifier.swift */; };
+		F29E04007E8CFA0FA6E18AF2 /* MusicWorkspaceStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DCF094A353571215DFC2D48 /* MusicWorkspaceStyle.swift */; };
+		F375723868E90F4AD5DB32C9 /* WorkspaceImportMutationExecutor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F13BCE01293B5D9E1A24FFD8 /* WorkspaceImportMutationExecutor.swift */; };
+		F41326CF0E9B8D5D905F4EE0 /* MotionRevealApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEA1313E0E2CDE44CE3608D4 /* MotionRevealApp.swift */; };
+		F6A8F9BC1EAA6C657D8F6B8A /* Motion in Frameworks */ = {isa = PBXBuildFile; productRef = 1B6E1AD95C64055927DCABDE /* Motion */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		0F9586697C838EC9451B13E0 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4E87E2475C8748B32D2D5C95 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 29587690CE67C4B9535DECFF;
+			remoteInfo = MotionRevealLiveActivity;
+		};
+		A136C07D2D111A3DF252A7BF /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4E87E2475C8748B32D2D5C95 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = A41FD9BC3BB379CE3C51C283;
+			remoteInfo = MotionReveal;
+		};
+		B93FE780DB034A86C19BDF3A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4E87E2475C8748B32D2D5C95 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = A41FD9BC3BB379CE3C51C283;
+			remoteInfo = MotionReveal;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		1AB3D17EE42C4AA0B7ACC33B /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				08761712B12C82E47925678C /* MotionRevealLiveActivity.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		00216A7DBE2ED8D920437678 /* MotionRevealLiveActivity.appex */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = "wrapper.app-extension"; path = MotionRevealLiveActivity.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		005F156D059887ECEA0B7340 /* DiscSlotOccluder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscSlotOccluder.swift; sourceTree = "<group>"; };
+		01A54B48F5E7C4675A894093 /* IslandSlotHardware.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IslandSlotHardware.swift; sourceTree = "<group>"; };
+		028AB449EF669975891BE4A8 /* WorkspacePlaybackRuntime.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkspacePlaybackRuntime.swift; sourceTree = "<group>"; };
+		0659F20250BBD10CFC2EA5C3 /* StudioDisc.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudioDisc.swift; sourceTree = "<group>"; };
+		08380BEBC9DE8F3E56A294FC /* MotionRuntimeAvailability.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MotionRuntimeAvailability.swift; sourceTree = "<group>"; };
+		09757C4E8024C5BC44367B3C /* NowPlayingLiveActivity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NowPlayingLiveActivity.swift; sourceTree = "<group>"; };
+		0A4F977C2DD2D8AE015D3BFA /* DiscPlayerMouth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscPlayerMouth.swift; sourceTree = "<group>"; };
+		0CE8A4E03ED9CD31DBBD996C /* WorkspaceRitualTiming.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkspaceRitualTiming.swift; sourceTree = "<group>"; };
+		0E2F6678EF872F5026E35877 /* WorkspaceExportItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkspaceExportItem.swift; sourceTree = "<group>"; };
+		0E8732E80DA1DF7F77934789 /* WorkspaceStatusViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkspaceStatusViews.swift; sourceTree = "<group>"; };
+		126A14B13A544D51D611F9FC /* CreatedAlbumDiscPromptView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatedAlbumDiscPromptView.swift; sourceTree = "<group>"; };
+		1418EBC4A255F8971D00A82F /* DynamicNotchRevealFlow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DynamicNotchRevealFlow.swift; sourceTree = "<group>"; };
+		15DD1332BE339ECFBE1343DF /* AudioPlaybackController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioPlaybackController.swift; sourceTree = "<group>"; };
+		160A4A21EA652FFAF9D306BD /* MotionReveal.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MotionReveal.entitlements; sourceTree = "<group>"; };
+		162AC2A7BC0B834D9F66751B /* RemoteCommandController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteCommandController.swift; sourceTree = "<group>"; };
+		171441D3DE6D17CDC1FC5E56 /* LaunchAlbumSetupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchAlbumSetupView.swift; sourceTree = "<group>"; };
+		184A61811A132CA82EDF5067 /* MotionRevealUITests.xctest */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.cfbundle; path = MotionRevealUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		191B47529874738B85D80524 /* AudioPlaybackControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioPlaybackControllerTests.swift; sourceTree = "<group>"; };
+		1CEE6BB3FC11B15A2DAF5A48 /* WorkspaceImportWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkspaceImportWorker.swift; sourceTree = "<group>"; };
+		2327CE17913390479771229F /* WorkspaceProjectMutationExecutor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkspaceProjectMutationExecutor.swift; sourceTree = "<group>"; };
+		232B908929DC754C4EC93B48 /* WorkspaceImportSelection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkspaceImportSelection.swift; sourceTree = "<group>"; };
+		23DC38D4C3F3FC814E7E10C3 /* MusicLibraryStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicLibraryStore.swift; sourceTree = "<group>"; };
+		24A095AD6720D768605B8641 /* TimedLyrics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimedLyrics.swift; sourceTree = "<group>"; };
+		25D5E2302B4B329DFE4C8BF8 /* StudioDiscMaterialModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudioDiscMaterialModifier.swift; sourceTree = "<group>"; };
+		260DD78F5C76529A7F823461 /* StudioMetalStarfield.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudioMetalStarfield.swift; sourceTree = "<group>"; };
+		2D9B189A97DC6E45FD03DDCA /* BlankCDIridescence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlankCDIridescence.swift; sourceTree = "<group>"; };
+		2F0A3E173AB67FADE0F01BAD /* WorkspaceDocumentPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkspaceDocumentPicker.swift; sourceTree = "<group>"; };
+		312AAC19DB740703BFA88C5A /* WorkspaceSongContainerCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkspaceSongContainerCoordinator.swift; sourceTree = "<group>"; };
+		31F7B5A1C73EDE0256533552 /* DiscSideProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscSideProfile.swift; sourceTree = "<group>"; };
+		320A3FF47B02F045720F5B3C /* MotionRevealTests.xctest */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.cfbundle; path = MotionRevealTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		330F3F31CDD49A6E3092B601 /* MotionRevealLiveActivityWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MotionRevealLiveActivityWidget.swift; sourceTree = "<group>"; };
+		373897AF553195F414D8819B /* StudioDiscMaterialProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudioDiscMaterialProfile.swift; sourceTree = "<group>"; };
+		3988E520F14658E1335C1B20 /* WorkspaceLibraryPersistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkspaceLibraryPersistence.swift; sourceTree = "<group>"; };
+		3C4E9D56848FFDF8EE81D48F /* SampleMotionArtwork.mp4 */ = {isa = PBXFileReference; path = SampleMotionArtwork.mp4; sourceTree = "<group>"; };
+		3CD138EDFD6004CFD0705CA1 /* StudioGlowSweep.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudioGlowSweep.swift; sourceTree = "<group>"; };
+		437F46A5A0A227C502200CA4 /* StudioDrawerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudioDrawerView.swift; sourceTree = "<group>"; };
+		45D588BF10AE69B9E50432BB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		47D3A28D57E1602ABFBC8D05 /* WorkspaceDynamicIslandCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkspaceDynamicIslandCoordinator.swift; sourceTree = "<group>"; };
+		4B8FDCAF920AB268056024FD /* WorkspaceImportError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkspaceImportError.swift; sourceTree = "<group>"; };
+		52FBB5607CCF929864475C69 /* WorkspacePresentationModifiers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkspacePresentationModifiers.swift; sourceTree = "<group>"; };
+		5DD3A17D2578243FB43E3B3C /* PlaybackProgress.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaybackProgress.swift; sourceTree = "<group>"; };
+		65B3813794CE6A141D9A603A /* DynamicSlotPullDecision.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DynamicSlotPullDecision.swift; sourceTree = "<group>"; };
+		66B58D26381BF2F0018C253C /* WorkspaceChromeViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkspaceChromeViews.swift; sourceTree = "<group>"; };
+		67AA6926050B2EA9D30ED123 /* DynamicNotchRevealDemoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DynamicNotchRevealDemoView.swift; sourceTree = "<group>"; };
+		6A9DB47DFF9ACAED32BDBA8A /* DebugLaunchStateReset.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebugLaunchStateReset.swift; sourceTree = "<group>"; };
+		6AD7DBCE0626A7657CC5857A /* StudioDeviceTilt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudioDeviceTilt.swift; sourceTree = "<group>"; };
+		6D347D76DD3D4610E46139CD /* WorkspaceDestructiveActionExecutor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkspaceDestructiveActionExecutor.swift; sourceTree = "<group>"; };
+		6DCAFBA99D04753E09D18A64 /* MotionRevealFirstRunUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MotionRevealFirstRunUITests.swift; sourceTree = "<group>"; };
+		6DCF094A353571215DFC2D48 /* MusicWorkspaceStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicWorkspaceStyle.swift; sourceTree = "<group>"; };
+		723713E41D6EDD3CA891F95B /* MusicWorkspaceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicWorkspaceView.swift; sourceTree = "<group>"; };
+		746C70F506615C4E68C15F2E /* MusicWorkspaceModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicWorkspaceModelTests.swift; sourceTree = "<group>"; };
+		74DFE8871033BF7FA44BD57E /* LoopingVideoPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoopingVideoPlayer.swift; sourceTree = "<group>"; };
+		767CBD38315037EB9B44B275 /* MusicWorkspaceModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicWorkspaceModels.swift; sourceTree = "<group>"; };
+		7E880A44E4BD9DE23D8C5548 /* DynamicNotchRevealFlowTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DynamicNotchRevealFlowTests.swift; sourceTree = "<group>"; };
+		7E922CFEB342DB19922C9ED9 /* WorkspaceActionMenuContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkspaceActionMenuContent.swift; sourceTree = "<group>"; };
+		7F98C331C67DBD35055FE3DF /* playdate_disc_intake.riv */ = {isa = PBXFileReference; path = playdate_disc_intake.riv; sourceTree = "<group>"; };
+		7FF74482AE828988A210B404 /* MotionRevealDeepLink.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MotionRevealDeepLink.swift; sourceTree = "<group>"; };
+		81F8237BDEBD72F3EB8D035C /* DynamicNotchRevealView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DynamicNotchRevealView.swift; sourceTree = "<group>"; };
+		825BD9A88933EB0972EF41BA /* LibraryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryView.swift; sourceTree = "<group>"; };
+		83FBC121701C225FDCE03974 /* MotionArtworkPreviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MotionArtworkPreviewView.swift; sourceTree = "<group>"; };
+		8D75ED5B56251051A8096536 /* WorkspaceActionSheets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkspaceActionSheets.swift; sourceTree = "<group>"; };
+		91614332FE58BE2DAC6BF546 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		922D05AB150579DA3EA6A80E /* IslandLoadedPulse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IslandLoadedPulse.swift; sourceTree = "<group>"; };
+		9691CD426FD3174F127AA9CF /* WorkspaceImportFlow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkspaceImportFlow.swift; sourceTree = "<group>"; };
+		99F0C36DE1CD369A41260CBF /* RiveRuntimeSupport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RiveRuntimeSupport.swift; sourceTree = "<group>"; };
+		9C16124B8A4C77D7C0D41263 /* WorkspacePlaybackCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkspacePlaybackCoordinator.swift; sourceTree = "<group>"; };
+		9E44D45BCD3F752F98228B2F /* MotionRevealCarPlaySceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MotionRevealCarPlaySceneDelegate.swift; sourceTree = "<group>"; };
+		A002C2644C21770A37426881 /* WorkspaceHeroMotion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkspaceHeroMotion.swift; sourceTree = "<group>"; };
+		A1202079BBC8D0C4A26E523E /* NowPlayingVisuals.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NowPlayingVisuals.swift; sourceTree = "<group>"; };
+		A1650A2983F2D291579683EE /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
+		AA6DD7BF05307419CB5CD273 /* LRCParserTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LRCParserTests.swift; sourceTree = "<group>"; };
+		AD0967C4C54BE5A7E5562403 /* MiniPlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MiniPlayerView.swift; sourceTree = "<group>"; };
+		AF010CB0FC3FDBB4D74327AE /* LaunchDiscRiveIntroView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchDiscRiveIntroView.swift; sourceTree = "<group>"; };
+		B0CB0F06F6F897F818449A6A /* NowPlayingInfoPublisher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NowPlayingInfoPublisher.swift; sourceTree = "<group>"; };
+		B229B7AC30E4F7C5DF799569 /* IridescentEffects.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IridescentEffects.swift; sourceTree = "<group>"; };
+		B4EE24F7C9929E56E2AC8FB5 /* MotionArtworkPreviewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MotionArtworkPreviewModel.swift; sourceTree = "<group>"; };
+		B5E7BE6F83C4F80127B93914 /* WorkspaceTrackMutationExecutor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkspaceTrackMutationExecutor.swift; sourceTree = "<group>"; };
+		BA30600B09FC206A12B737EE /* RitualOverlayViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RitualOverlayViews.swift; sourceTree = "<group>"; };
+		BAF507AA9F68AC010BD9D804 /* IslandSlotViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IslandSlotViews.swift; sourceTree = "<group>"; };
+		C1DBA2D51389FBA318BCDD8F /* WaveformMarkerViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaveformMarkerViews.swift; sourceTree = "<group>"; };
+		C9E028BCD0BADEEE9445DB17 /* WorkspaceExportBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkspaceExportBuilder.swift; sourceTree = "<group>"; };
+		CAE917828626C95BE8A95287 /* InsertionHandoffGlow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsertionHandoffGlow.swift; sourceTree = "<group>"; };
+		CC6BF486F954D55C0F397B37 /* ProjectDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectDetailView.swift; sourceTree = "<group>"; };
+		CCCECEA079615756CB433FD9 /* MotionRevealIntents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MotionRevealIntents.swift; sourceTree = "<group>"; };
+		CD1A0DA45A455034815D4323 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		CE948B9D0C05AE1D442DBA34 /* WorkspaceImportContentPolicy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkspaceImportContentPolicy.swift; sourceTree = "<group>"; };
+		CFC272A7F102D850970DCB2A /* WorkspaceRenameDraft.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkspaceRenameDraft.swift; sourceTree = "<group>"; };
+		D2FDECC2FB1824540D9975A5 /* StudioMetalStarfield.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = StudioMetalStarfield.metal; sourceTree = "<group>"; };
+		DA7BF2F3C6B1725C3604C8AA /* SleeveArtworkViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SleeveArtworkViews.swift; sourceTree = "<group>"; };
+		DEA1313E0E2CDE44CE3608D4 /* MotionRevealApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MotionRevealApp.swift; sourceTree = "<group>"; };
+		DF9FC4A60CD7A67FDA5AEE3E /* FlightTrail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlightTrail.swift; sourceTree = "<group>"; };
+		DFB5C6415ED4AA3B92ABD4E3 /* LaunchDiscIntroView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchDiscIntroView.swift; sourceTree = "<group>"; };
+		E314491C8DE782446D9B8808 /* DynamicSlotPullResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DynamicSlotPullResponse.swift; sourceTree = "<group>"; };
+		E55AEB2604805B2887CB4B4E /* StudioImportNotchTray.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudioImportNotchTray.swift; sourceTree = "<group>"; };
+		E634D9356D1C4E7DCAA95F08 /* WorkspaceRootChromeViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkspaceRootChromeViews.swift; sourceTree = "<group>"; };
+		E8D2C70C48D8EEF3A69752C2 /* WorkspaceMarkerDraft.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkspaceMarkerDraft.swift; sourceTree = "<group>"; };
+		E917F9A1F997277E0C8791F2 /* SongContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongContainerView.swift; sourceTree = "<group>"; };
+		EA8FC8824A245DDC04DF9DF0 /* WorkspaceSettingsSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkspaceSettingsSheet.swift; sourceTree = "<group>"; };
+		ED9BFAEA03AA8550FC47D9EE /* MotionRevealCarPlayRootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MotionRevealCarPlayRootView.swift; sourceTree = "<group>"; };
+		F10DB4BB995B50B78CE9EA8D /* WorkspaceImportProcessor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkspaceImportProcessor.swift; sourceTree = "<group>"; };
+		F13BCE01293B5D9E1A24FFD8 /* WorkspaceImportMutationExecutor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkspaceImportMutationExecutor.swift; sourceTree = "<group>"; };
+		F230F4A9E138548EF0007B1A /* WorkspaceLaunchAutomation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkspaceLaunchAutomation.swift; sourceTree = "<group>"; };
+		F38C7A17E7DF0402C8B956B9 /* MotionReveal.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = MotionReveal.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		F76A0DEA2381586A1C7BA58C /* SleeveImageLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SleeveImageLoader.swift; sourceTree = "<group>"; };
+		F81C3E3FFC648155854D3B5F /* StudioBrandViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudioBrandViews.swift; sourceTree = "<group>"; };
+		F9877EB870FB40A93FB67986 /* WorkspaceDeepLinkRoute.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkspaceDeepLinkRoute.swift; sourceTree = "<group>"; };
+		FB7285AD66593AD80070BCDB /* NowPlayingActivityAttributes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NowPlayingActivityAttributes.swift; sourceTree = "<group>"; };
+		FBBD88AADD7ADBD1227DECE5 /* DebugSwiftBootstrap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebugSwiftBootstrap.swift; sourceTree = "<group>"; };
+		FC84E3FEB975D56CFF2283E0 /* WorkspaceLiveActivitySync.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkspaceLiveActivitySync.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		1CD206C4EAA97D7F05F85E63 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				64E133931A47229CBD2722CA /* Lottie in Frameworks */,
+				9868C9BE0DD09D8B6C154EFB /* RiveRuntime in Frameworks */,
+				96BA2342D2B324208A28E38D /* ShaderKit in Frameworks */,
+				4A8ADC61C4846FA94C6393A4 /* ShaderKitUI in Frameworks */,
+				CA9FE5B968EFBBBB15882FE5 /* Inferno in Frameworks */,
+				F6A8F9BC1EAA6C657D8F6B8A /* Motion in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		0126AA8BEE2C6591D0D53EFB /* Motion */ = {
+			isa = PBXGroup;
+			children = (
+				2D9B189A97DC6E45FD03DDCA /* BlankCDIridescence.swift */,
+				126A14B13A544D51D611F9FC /* CreatedAlbumDiscPromptView.swift */,
+				0A4F977C2DD2D8AE015D3BFA /* DiscPlayerMouth.swift */,
+				31F7B5A1C73EDE0256533552 /* DiscSideProfile.swift */,
+				005F156D059887ECEA0B7340 /* DiscSlotOccluder.swift */,
+				65B3813794CE6A141D9A603A /* DynamicSlotPullDecision.swift */,
+				E314491C8DE782446D9B8808 /* DynamicSlotPullResponse.swift */,
+				DF9FC4A60CD7A67FDA5AEE3E /* FlightTrail.swift */,
+				CAE917828626C95BE8A95287 /* InsertionHandoffGlow.swift */,
+				B229B7AC30E4F7C5DF799569 /* IridescentEffects.swift */,
+				922D05AB150579DA3EA6A80E /* IslandLoadedPulse.swift */,
+				01A54B48F5E7C4675A894093 /* IslandSlotHardware.swift */,
+				BAF507AA9F68AC010BD9D804 /* IslandSlotViews.swift */,
+				BA30600B09FC206A12B737EE /* RitualOverlayViews.swift */,
+				6AD7DBCE0626A7657CC5857A /* StudioDeviceTilt.swift */,
+				0659F20250BBD10CFC2EA5C3 /* StudioDisc.swift */,
+				25D5E2302B4B329DFE4C8BF8 /* StudioDiscMaterialModifier.swift */,
+				373897AF553195F414D8819B /* StudioDiscMaterialProfile.swift */,
+				3CD138EDFD6004CFD0705CA1 /* StudioGlowSweep.swift */,
+				E55AEB2604805B2887CB4B4E /* StudioImportNotchTray.swift */,
+				D2FDECC2FB1824540D9975A5 /* StudioMetalStarfield.metal */,
+				260DD78F5C76529A7F823461 /* StudioMetalStarfield.swift */,
+				0CE8A4E03ED9CD31DBBD996C /* WorkspaceRitualTiming.swift */,
+			);
+			path = Motion;
+			sourceTree = "<group>";
+		};
+		0DE0DD75C1033BCC45E3ECE3 /* FirstRun */ = {
+			isa = PBXGroup;
+			children = (
+				6DCAFBA99D04753E09D18A64 /* MotionRevealFirstRunUITests.swift */,
+			);
+			path = FirstRun;
+			sourceTree = "<group>";
+		};
+		1061E0BF864639444E5CC6B2 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				F38C7A17E7DF0402C8B956B9 /* MotionReveal.app */,
+				00216A7DBE2ED8D920437678 /* MotionRevealLiveActivity.appex */,
+				320A3FF47B02F045720F5B3C /* MotionRevealTests.xctest */,
+				184A61811A132CA82EDF5067 /* MotionRevealUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		2C4C52C691AA785CD1162114 /* BackPocket */ = {
+			isa = PBXGroup;
+			children = (
+				DBEAEE4CA4F6DF25AF094CCF /* DynamicNotchReveal */,
+			);
+			path = BackPocket;
+			sourceTree = "<group>";
+		};
+		30A61EAAD52ACB93F2DBE6FA /* CarPlay */ = {
+			isa = PBXGroup;
+			children = (
+				ED9BFAEA03AA8550FC47D9EE /* MotionRevealCarPlayRootView.swift */,
+				9E44D45BCD3F752F98228B2F /* MotionRevealCarPlaySceneDelegate.swift */,
+			);
+			path = CarPlay;
+			sourceTree = "<group>";
+		};
+		411885CCE2A78A0CECD7D734 /* MotionRevealUITests */ = {
+			isa = PBXGroup;
+			children = (
+				0DE0DD75C1033BCC45E3ECE3 /* FirstRun */,
+			);
+			path = MotionRevealUITests;
+			sourceTree = "<group>";
+		};
+		461C5A3CAE1A08350F2215F0 /* MotionRevealLiveActivity */ = {
+			isa = PBXGroup;
+			children = (
+				CD1A0DA45A455034815D4323 /* Info.plist */,
+				330F3F31CDD49A6E3092B601 /* MotionRevealLiveActivityWidget.swift */,
+			);
+			path = MotionRevealLiveActivity;
+			sourceTree = "<group>";
+		};
+		569A985ECF1DF5424E56A6AA /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				171441D3DE6D17CDC1FC5E56 /* LaunchAlbumSetupView.swift */,
+				DFB5C6415ED4AA3B92ABD4E3 /* LaunchDiscIntroView.swift */,
+				AF010CB0FC3FDBB4D74327AE /* LaunchDiscRiveIntroView.swift */,
+				825BD9A88933EB0972EF41BA /* LibraryView.swift */,
+				74DFE8871033BF7FA44BD57E /* LoopingVideoPlayer.swift */,
+				AD0967C4C54BE5A7E5562403 /* MiniPlayerView.swift */,
+				B4EE24F7C9929E56E2AC8FB5 /* MotionArtworkPreviewModel.swift */,
+				83FBC121701C225FDCE03974 /* MotionArtworkPreviewView.swift */,
+				723713E41D6EDD3CA891F95B /* MusicWorkspaceView.swift */,
+				A1202079BBC8D0C4A26E523E /* NowPlayingVisuals.swift */,
+				A1650A2983F2D291579683EE /* OnboardingView.swift */,
+				CC6BF486F954D55C0F397B37 /* ProjectDetailView.swift */,
+				DA7BF2F3C6B1725C3604C8AA /* SleeveArtworkViews.swift */,
+				F76A0DEA2381586A1C7BA58C /* SleeveImageLoader.swift */,
+				E917F9A1F997277E0C8791F2 /* SongContainerView.swift */,
+				437F46A5A0A227C502200CA4 /* StudioDrawerView.swift */,
+				C1DBA2D51389FBA318BCDD8F /* WaveformMarkerViews.swift */,
+				7E922CFEB342DB19922C9ED9 /* WorkspaceActionMenuContent.swift */,
+				8D75ED5B56251051A8096536 /* WorkspaceActionSheets.swift */,
+				66B58D26381BF2F0018C253C /* WorkspaceChromeViews.swift */,
+				A002C2644C21770A37426881 /* WorkspaceHeroMotion.swift */,
+				52FBB5607CCF929864475C69 /* WorkspacePresentationModifiers.swift */,
+				E634D9356D1C4E7DCAA95F08 /* WorkspaceRootChromeViews.swift */,
+				EA8FC8824A245DDC04DF9DF0 /* WorkspaceSettingsSheet.swift */,
+				0E8732E80DA1DF7F77934789 /* WorkspaceStatusViews.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		5A7B455C3FA21EC24D5DC653 /* Support */ = {
+			isa = PBXGroup;
+			children = (
+				7FF74482AE828988A210B404 /* MotionRevealDeepLink.swift */,
+				08380BEBC9DE8F3E56A294FC /* MotionRuntimeAvailability.swift */,
+				FB7285AD66593AD80070BCDB /* NowPlayingActivityAttributes.swift */,
+				09757C4E8024C5BC44367B3C /* NowPlayingLiveActivity.swift */,
+				99F0C36DE1CD369A41260CBF /* RiveRuntimeSupport.swift */,
+			);
+			path = Support;
+			sourceTree = "<group>";
+		};
+		5E175DADFB3CD92578550840 /* Flow */ = {
+			isa = PBXGroup;
+			children = (
+				F230F4A9E138548EF0007B1A /* WorkspaceLaunchAutomation.swift */,
+				2327CE17913390479771229F /* WorkspaceProjectMutationExecutor.swift */,
+				312AAC19DB740703BFA88C5A /* WorkspaceSongContainerCoordinator.swift */,
+				B5E7BE6F83C4F80127B93914 /* WorkspaceTrackMutationExecutor.swift */,
+			);
+			path = Flow;
+			sourceTree = "<group>";
+		};
+		770E7290B2C68942F28D911C /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				B0477EF93B59594F8295F0C1 /* Rive */,
+				3C4E9D56848FFDF8EE81D48F /* SampleMotionArtwork.mp4 */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		81FEF86D2842FC6842A9EAFE /* Playback */ = {
+			isa = PBXGroup;
+			children = (
+				15DD1332BE339ECFBE1343DF /* AudioPlaybackController.swift */,
+				B0CB0F06F6F897F818449A6A /* NowPlayingInfoPublisher.swift */,
+				5DD3A17D2578243FB43E3B3C /* PlaybackProgress.swift */,
+				162AC2A7BC0B834D9F66751B /* RemoteCommandController.swift */,
+				9C16124B8A4C77D7C0D41263 /* WorkspacePlaybackCoordinator.swift */,
+				028AB449EF669975891BE4A8 /* WorkspacePlaybackRuntime.swift */,
+			);
+			path = Playback;
+			sourceTree = "<group>";
+		};
+		835D860307649CCCF2936757 /* MusicWorkspace */ = {
+			isa = PBXGroup;
+			children = (
+				AA6DD7BF05307419CB5CD273 /* LRCParserTests.swift */,
+				746C70F506615C4E68C15F2E /* MusicWorkspaceModelTests.swift */,
+			);
+			path = MusicWorkspace;
+			sourceTree = "<group>";
+		};
+		9B0377DFDF79A49388F1D050 /* Style */ = {
+			isa = PBXGroup;
+			children = (
+				6DCF094A353571215DFC2D48 /* MusicWorkspaceStyle.swift */,
+				F81C3E3FFC648155854D3B5F /* StudioBrandViews.swift */,
+			);
+			path = Style;
+			sourceTree = "<group>";
+		};
+		9FDF821E9B8F05A5BF2AC95F /* BackPocket */ = {
+			isa = PBXGroup;
+			children = (
+				7E880A44E4BD9DE23D8C5548 /* DynamicNotchRevealFlowTests.swift */,
+			);
+			path = BackPocket;
+			sourceTree = "<group>";
+		};
+		A8589508756DC98F22EBEF88 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				6A9DB47DFF9ACAED32BDBA8A /* DebugLaunchStateReset.swift */,
+				FBBD88AADD7ADBD1227DECE5 /* DebugSwiftBootstrap.swift */,
+				DEA1313E0E2CDE44CE3608D4 /* MotionRevealApp.swift */,
+				CCCECEA079615756CB433FD9 /* MotionRevealIntents.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		AC95AF08498B10A566B52742 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				23DC38D4C3F3FC814E7E10C3 /* MusicLibraryStore.swift */,
+				3988E520F14658E1335C1B20 /* WorkspaceLibraryPersistence.swift */,
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
+		B0477EF93B59594F8295F0C1 /* Rive */ = {
+			isa = PBXGroup;
+			children = (
+				7F98C331C67DBD35055FE3DF /* playdate_disc_intake.riv */,
+			);
+			path = Rive;
+			sourceTree = "<group>";
+		};
+		B2584F93EE2DA50C2A16F126 /* Features */ = {
+			isa = PBXGroup;
+			children = (
+				BF2E17730C92486295129F2D /* MusicWorkspace */,
+			);
+			path = Features;
+			sourceTree = "<group>";
+		};
+		BF2E17730C92486295129F2D /* MusicWorkspace */ = {
+			isa = PBXGroup;
+			children = (
+				AC95AF08498B10A566B52742 /* Data */,
+				CFB437166D3DB8911D407A87 /* Domain */,
+				5E175DADFB3CD92578550840 /* Flow */,
+				CAAD6E049DF4AC7592697144 /* ImportExport */,
+				E56F9BFB2445AAEA104B110C /* LiveActivity */,
+				0126AA8BEE2C6591D0D53EFB /* Motion */,
+				81FEF86D2842FC6842A9EAFE /* Playback */,
+				9B0377DFDF79A49388F1D050 /* Style */,
+				569A985ECF1DF5424E56A6AA /* Views */,
+			);
+			path = MusicWorkspace;
+			sourceTree = "<group>";
+		};
+		CAAD6E049DF4AC7592697144 /* ImportExport */ = {
+			isa = PBXGroup;
+			children = (
+				6D347D76DD3D4610E46139CD /* WorkspaceDestructiveActionExecutor.swift */,
+				2F0A3E173AB67FADE0F01BAD /* WorkspaceDocumentPicker.swift */,
+				C9E028BCD0BADEEE9445DB17 /* WorkspaceExportBuilder.swift */,
+				0E2F6678EF872F5026E35877 /* WorkspaceExportItem.swift */,
+				CE948B9D0C05AE1D442DBA34 /* WorkspaceImportContentPolicy.swift */,
+				4B8FDCAF920AB268056024FD /* WorkspaceImportError.swift */,
+				9691CD426FD3174F127AA9CF /* WorkspaceImportFlow.swift */,
+				F13BCE01293B5D9E1A24FFD8 /* WorkspaceImportMutationExecutor.swift */,
+				F10DB4BB995B50B78CE9EA8D /* WorkspaceImportProcessor.swift */,
+				232B908929DC754C4EC93B48 /* WorkspaceImportSelection.swift */,
+				1CEE6BB3FC11B15A2DAF5A48 /* WorkspaceImportWorker.swift */,
+			);
+			path = ImportExport;
+			sourceTree = "<group>";
+		};
+		CDB56180A29AF3DB06BA7AEA /* MotionRevealTests */ = {
+			isa = PBXGroup;
+			children = (
+				9FDF821E9B8F05A5BF2AC95F /* BackPocket */,
+				835D860307649CCCF2936757 /* MusicWorkspace */,
+				D45BDC337B45BB88F1D41420 /* Playback */,
+			);
+			path = MotionRevealTests;
+			sourceTree = "<group>";
+		};
+		CFB437166D3DB8911D407A87 /* Domain */ = {
+			isa = PBXGroup;
+			children = (
+				767CBD38315037EB9B44B275 /* MusicWorkspaceModels.swift */,
+				24A095AD6720D768605B8641 /* TimedLyrics.swift */,
+				F9877EB870FB40A93FB67986 /* WorkspaceDeepLinkRoute.swift */,
+				E8D2C70C48D8EEF3A69752C2 /* WorkspaceMarkerDraft.swift */,
+				CFC272A7F102D850970DCB2A /* WorkspaceRenameDraft.swift */,
+			);
+			path = Domain;
+			sourceTree = "<group>";
+		};
+		D3C4E9F356ED73B69A58C6AE /* MotionReveal */ = {
+			isa = PBXGroup;
+			children = (
+				A8589508756DC98F22EBEF88 /* App */,
+				2C4C52C691AA785CD1162114 /* BackPocket */,
+				30A61EAAD52ACB93F2DBE6FA /* CarPlay */,
+				B2584F93EE2DA50C2A16F126 /* Features */,
+				770E7290B2C68942F28D911C /* Resources */,
+				5A7B455C3FA21EC24D5DC653 /* Support */,
+				91614332FE58BE2DAC6BF546 /* Assets.xcassets */,
+				45D588BF10AE69B9E50432BB /* Info.plist */,
+				160A4A21EA652FFAF9D306BD /* MotionReveal.entitlements */,
+			);
+			path = MotionReveal;
+			sourceTree = "<group>";
+		};
+		D45BDC337B45BB88F1D41420 /* Playback */ = {
+			isa = PBXGroup;
+			children = (
+				191B47529874738B85D80524 /* AudioPlaybackControllerTests.swift */,
+			);
+			path = Playback;
+			sourceTree = "<group>";
+		};
+		D6B16CC5CD06B239FFFAD589 = {
+			isa = PBXGroup;
+			children = (
+				D3C4E9F356ED73B69A58C6AE /* MotionReveal */,
+				461C5A3CAE1A08350F2215F0 /* MotionRevealLiveActivity */,
+				CDB56180A29AF3DB06BA7AEA /* MotionRevealTests */,
+				411885CCE2A78A0CECD7D734 /* MotionRevealUITests */,
+				1061E0BF864639444E5CC6B2 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		DBEAEE4CA4F6DF25AF094CCF /* DynamicNotchReveal */ = {
+			isa = PBXGroup;
+			children = (
+				67AA6926050B2EA9D30ED123 /* DynamicNotchRevealDemoView.swift */,
+				1418EBC4A255F8971D00A82F /* DynamicNotchRevealFlow.swift */,
+				81F8237BDEBD72F3EB8D035C /* DynamicNotchRevealView.swift */,
+			);
+			path = DynamicNotchReveal;
+			sourceTree = "<group>";
+		};
+		E56F9BFB2445AAEA104B110C /* LiveActivity */ = {
+			isa = PBXGroup;
+			children = (
+				47D3A28D57E1602ABFBC8D05 /* WorkspaceDynamicIslandCoordinator.swift */,
+				FC84E3FEB975D56CFF2283E0 /* WorkspaceLiveActivitySync.swift */,
+			);
+			path = LiveActivity;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		29587690CE67C4B9535DECFF /* MotionRevealLiveActivity */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 137AAD1E28183F0BCE79EAF6 /* Build configuration list for PBXNativeTarget "MotionRevealLiveActivity" */;
+			buildPhases = (
+				E32C030B5E6D66751009A9B0 /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = MotionRevealLiveActivity;
+			packageProductDependencies = (
+			);
+			productName = MotionRevealLiveActivity;
+			productReference = 00216A7DBE2ED8D920437678 /* MotionRevealLiveActivity.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
+		A41FD9BC3BB379CE3C51C283 /* MotionReveal */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4F29EBBC50055412F6E493AE /* Build configuration list for PBXNativeTarget "MotionReveal" */;
+			buildPhases = (
+				EB39228BFA808BA536E19BEE /* Sources */,
+				D05E386296B3F3E01287A9E2 /* Resources */,
+				1CD206C4EAA97D7F05F85E63 /* Frameworks */,
+				1AB3D17EE42C4AA0B7ACC33B /* Embed Foundation Extensions */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				685F7A0792F70D84C151D3B6 /* PBXTargetDependency */,
+			);
+			name = MotionReveal;
+			packageProductDependencies = (
+				7DB225DE8F56802956FA7ED4 /* Lottie */,
+				0CC3B1751BE90E182D4B7E0C /* RiveRuntime */,
+				B8D3080A1457ADB9A80E0ACF /* ShaderKit */,
+				7AD65A461B65D32FD11D0D95 /* ShaderKitUI */,
+				21EB2F88B0E44645605969FE /* Inferno */,
+				1B6E1AD95C64055927DCABDE /* Motion */,
+			);
+			productName = MotionReveal;
+			productReference = F38C7A17E7DF0402C8B956B9 /* MotionReveal.app */;
+			productType = "com.apple.product-type.application";
+		};
+		B20ACB4E938AC9E68E562A8F /* MotionRevealUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A126FF2235A4C624164160B3 /* Build configuration list for PBXNativeTarget "MotionRevealUITests" */;
+			buildPhases = (
+				DF7995AB394BD0F4F218B7CA /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				7B7C514ED37CB72DC534340B /* PBXTargetDependency */,
+			);
+			name = MotionRevealUITests;
+			packageProductDependencies = (
+			);
+			productName = MotionRevealUITests;
+			productReference = 184A61811A132CA82EDF5067 /* MotionRevealUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+		D8D4B4A192D483868354EA84 /* MotionRevealTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F6072532612040640CFFC57D /* Build configuration list for PBXNativeTarget "MotionRevealTests" */;
+			buildPhases = (
+				CC217441A205BDE04B212A0F /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				D90491CBA16BD01E58453048 /* PBXTargetDependency */,
+			);
+			name = MotionRevealTests;
+			packageProductDependencies = (
+			);
+			productName = MotionRevealTests;
+			productReference = 320A3FF47B02F045720F5B3C /* MotionRevealTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		4E87E2475C8748B32D2D5C95 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = YES;
+				LastUpgradeCheck = 1430;
+				TargetAttributes = {
+					29587690CE67C4B9535DECFF = {
+						DevelopmentTeam = 2M778W8LTC;
+						ProvisioningStyle = Automatic;
+					};
+					A41FD9BC3BB379CE3C51C283 = {
+						DevelopmentTeam = 2M778W8LTC;
+						ProvisioningStyle = Automatic;
+					};
+					B20ACB4E938AC9E68E562A8F = {
+						TestTargetID = A41FD9BC3BB379CE3C51C283;
+					};
+				};
+			};
+			buildConfigurationList = 04D19E134AE80222515E6907 /* Build configuration list for PBXProject "MotionReveal" */;
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				Base,
+				en,
+			);
+			mainGroup = D6B16CC5CD06B239FFFAD589;
+			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				F14443E37589FCAEE98E70F1 /* XCRemoteSwiftPackageReference "Inferno" */,
+				F3A630087E1944C431DA0302 /* XCRemoteSwiftPackageReference "Motion" */,
+				7B5557AF4688758D6F408DA5 /* XCRemoteSwiftPackageReference "ShaderKit" */,
+				7CDC26484B034FA02028049B /* XCRemoteSwiftPackageReference "lottie-spm" */,
+				62FDE737E03B886917748342 /* XCRemoteSwiftPackageReference "rive-ios" */,
+			);
+			preferredProjectObjectVersion = 77;
+			productRefGroup = 1061E0BF864639444E5CC6B2 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				A41FD9BC3BB379CE3C51C283 /* MotionReveal */,
+				29587690CE67C4B9535DECFF /* MotionRevealLiveActivity */,
+				D8D4B4A192D483868354EA84 /* MotionRevealTests */,
+				B20ACB4E938AC9E68E562A8F /* MotionRevealUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		D05E386296B3F3E01287A9E2 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4D7B8ABDAA582328B22FE456 /* Assets.xcassets in Resources */,
+				C723F4C523B9962ABF4AD4A5 /* SampleMotionArtwork.mp4 in Resources */,
+				63476C995457A407E9B1646F /* playdate_disc_intake.riv in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		CC217441A205BDE04B212A0F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AB3AD50E9AE9FB0E01A8ED6C /* AudioPlaybackControllerTests.swift in Sources */,
+				B14C0CB4C076DB140352DDD8 /* DynamicNotchRevealFlowTests.swift in Sources */,
+				6DB81D4F72E6C9393B2BF6DB /* LRCParserTests.swift in Sources */,
+				0529F9FE8349723076D3F3F5 /* MusicWorkspaceModelTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DF7995AB394BD0F4F218B7CA /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9DD5D665754505B3ADE0AD4D /* MotionRevealFirstRunUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E32C030B5E6D66751009A9B0 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EE64112DB270933B4ABBE28E /* MotionRevealDeepLink.swift in Sources */,
+				8329A71BB7C2DDAE25C9D805 /* MotionRevealIntents.swift in Sources */,
+				044FC06B4C90EF12861D432A /* MotionRevealLiveActivityWidget.swift in Sources */,
+				48B58BFB53FDC28E6E3359BD /* NowPlayingActivityAttributes.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EB39228BFA808BA536E19BEE /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9E58F23E19B3E5AE0E856A2B /* AudioPlaybackController.swift in Sources */,
+				E6998D61ABB7491C033C1777 /* BlankCDIridescence.swift in Sources */,
+				A30401F7F810036F69D5B7A1 /* CreatedAlbumDiscPromptView.swift in Sources */,
+				3849B28EFB6E21BBDA3E3981 /* DebugLaunchStateReset.swift in Sources */,
+				5E5D200481E3D239ED552624 /* DebugSwiftBootstrap.swift in Sources */,
+				626A14FAE846725537FE2E4E /* DiscPlayerMouth.swift in Sources */,
+				46A0EDD46F8ADED71782BE60 /* DiscSideProfile.swift in Sources */,
+				BE53CAB22FECA318F2C6BE1F /* DiscSlotOccluder.swift in Sources */,
+				812643C6CAD112B2470818B4 /* DynamicNotchRevealDemoView.swift in Sources */,
+				BEBD7C835FC862EAD9AD3005 /* DynamicNotchRevealFlow.swift in Sources */,
+				65C4E8F3CC4F2608F819C08F /* DynamicNotchRevealView.swift in Sources */,
+				31D1E67E7908681B3FDF8CA6 /* DynamicSlotPullDecision.swift in Sources */,
+				DCDD8AF298B20AF536AF7F00 /* DynamicSlotPullResponse.swift in Sources */,
+				0CB847C1624725199A8BE169 /* FlightTrail.swift in Sources */,
+				954B92FB7B1EDE7B3AE99DC3 /* InsertionHandoffGlow.swift in Sources */,
+				08A34D0F110B99ECBB1B17E5 /* IridescentEffects.swift in Sources */,
+				082441B26718AAF4D43202B2 /* IslandLoadedPulse.swift in Sources */,
+				30865CD10E2AC4A9E803835A /* IslandSlotHardware.swift in Sources */,
+				2D9B19DF19BC3E2AC6B49EFF /* IslandSlotViews.swift in Sources */,
+				AE6E77C24CF7FF6CC5F47F19 /* LaunchAlbumSetupView.swift in Sources */,
+				BC64A0660A4093EF23332C3C /* LaunchDiscIntroView.swift in Sources */,
+				AD267057C96196990A4F10CA /* LaunchDiscRiveIntroView.swift in Sources */,
+				28DE13E64A1670A50491DB31 /* LibraryView.swift in Sources */,
+				1B9D1B6C1E34262102D70787 /* LoopingVideoPlayer.swift in Sources */,
+				CE494803747BF40216850C3E /* MiniPlayerView.swift in Sources */,
+				A266F8858D282E2BDF329502 /* MotionArtworkPreviewModel.swift in Sources */,
+				8A3A5FB40BAB90E3C170F97F /* MotionArtworkPreviewView.swift in Sources */,
+				F41326CF0E9B8D5D905F4EE0 /* MotionRevealApp.swift in Sources */,
+				51B821DA0C55BEC7B8EC97CE /* MotionRevealCarPlayRootView.swift in Sources */,
+				1DCDBC6A5820257E25D01108 /* MotionRevealCarPlaySceneDelegate.swift in Sources */,
+				19622FF3253C03E1A7FF48DB /* MotionRevealDeepLink.swift in Sources */,
+				C921D10A6EA7920A62D48B6A /* MotionRevealIntents.swift in Sources */,
+				A91B1E9D4E22A9A40E4F48DA /* MotionRuntimeAvailability.swift in Sources */,
+				49C22488F0D552CAC1375C9A /* MusicLibraryStore.swift in Sources */,
+				472AEEA528C2FCC47B29B1DB /* MusicWorkspaceModels.swift in Sources */,
+				F29E04007E8CFA0FA6E18AF2 /* MusicWorkspaceStyle.swift in Sources */,
+				D99DAB66ACB29D2336CB55B0 /* MusicWorkspaceView.swift in Sources */,
+				63ADDB057D28A5BD6CBEAD4D /* NowPlayingActivityAttributes.swift in Sources */,
+				92D4CF0E22A2DEE475FF16C9 /* NowPlayingInfoPublisher.swift in Sources */,
+				021D036B84C55A6B1257F33D /* NowPlayingLiveActivity.swift in Sources */,
+				84D942546F9D7571DC370309 /* NowPlayingVisuals.swift in Sources */,
+				1B56570D2389CE0B29BD49DF /* OnboardingView.swift in Sources */,
+				C4BDB0785A9D7B1B64EE7166 /* PlaybackProgress.swift in Sources */,
+				003F1D5A45314FADE72BF5E9 /* ProjectDetailView.swift in Sources */,
+				4267834E56E9AD9BAF51F81E /* RemoteCommandController.swift in Sources */,
+				2D0D907B01BA6254DB19905A /* RitualOverlayViews.swift in Sources */,
+				2B81A3C90957077633E224B9 /* RiveRuntimeSupport.swift in Sources */,
+				66D1EAE2D257FECC33218593 /* SleeveArtworkViews.swift in Sources */,
+				967AA1268D907488646E98A7 /* SleeveImageLoader.swift in Sources */,
+				A406C9FC8AE34F380FC74F3E /* SongContainerView.swift in Sources */,
+				E597E9D3F81394BE13735AB2 /* StudioBrandViews.swift in Sources */,
+				3B2AC8A3019DEE78E17A85EC /* StudioDeviceTilt.swift in Sources */,
+				AD7CE8FF1A303750A6394E1C /* StudioDisc.swift in Sources */,
+				EEC322EF84DCF10B8A19597F /* StudioDiscMaterialModifier.swift in Sources */,
+				94D60EEB1F2A9ABCD3FBE880 /* StudioDiscMaterialProfile.swift in Sources */,
+				6FE8C76464B2A311631CFCA7 /* StudioDrawerView.swift in Sources */,
+				BC88F24DB35C4CCEBC2D29C8 /* StudioGlowSweep.swift in Sources */,
+				AF7281784A80757AFF878FE1 /* StudioImportNotchTray.swift in Sources */,
+				C7ECDB494477832646D7806B /* StudioMetalStarfield.metal in Sources */,
+				2F94F9A6E04A9EB996B50258 /* StudioMetalStarfield.swift in Sources */,
+				11889C1A9988FE4BE5D265C5 /* TimedLyrics.swift in Sources */,
+				7C41BD44ED0BDE59A8BD71F6 /* WaveformMarkerViews.swift in Sources */,
+				ADC9A7C8408433A79CAC143E /* WorkspaceActionMenuContent.swift in Sources */,
+				0F8AF1A666004D5FBA4D22DF /* WorkspaceActionSheets.swift in Sources */,
+				89B2CCB0B8CA135EBE3BD66A /* WorkspaceChromeViews.swift in Sources */,
+				7638D07BCA99D999ECAA9E35 /* WorkspaceDeepLinkRoute.swift in Sources */,
+				D9BC5FE16293E273494AA86A /* WorkspaceDestructiveActionExecutor.swift in Sources */,
+				05D6DAA0F6B9F04D3FBB19B9 /* WorkspaceDocumentPicker.swift in Sources */,
+				963E8808647FF039908E8D24 /* WorkspaceDynamicIslandCoordinator.swift in Sources */,
+				AAB936CB8A0CF13085BF5D14 /* WorkspaceExportBuilder.swift in Sources */,
+				AFD866750F1006C3ED9E2A13 /* WorkspaceExportItem.swift in Sources */,
+				07886CC3679D537A948FD751 /* WorkspaceHeroMotion.swift in Sources */,
+				31857C91173B8142502380B1 /* WorkspaceImportContentPolicy.swift in Sources */,
+				0AFC8915D2D0AB04D6B15419 /* WorkspaceImportError.swift in Sources */,
+				702383C7076C806283DC6B96 /* WorkspaceImportFlow.swift in Sources */,
+				F375723868E90F4AD5DB32C9 /* WorkspaceImportMutationExecutor.swift in Sources */,
+				3E6AEF0A889AE92ED4CB6778 /* WorkspaceImportProcessor.swift in Sources */,
+				C6D97BB2BCF0D0BBE5FB111A /* WorkspaceImportSelection.swift in Sources */,
+				7A11442BA2B2F76C53C1132A /* WorkspaceImportWorker.swift in Sources */,
+				592F049C163221233E912E95 /* WorkspaceLaunchAutomation.swift in Sources */,
+				E73685B23BFD45DE0E85FC17 /* WorkspaceLibraryPersistence.swift in Sources */,
+				C1432FCBFAD838EE94FA4189 /* WorkspaceLiveActivitySync.swift in Sources */,
+				D0E14D5A276E192DC2584104 /* WorkspaceMarkerDraft.swift in Sources */,
+				7F1FFC35537B3B1222310968 /* WorkspacePlaybackCoordinator.swift in Sources */,
+				6EF021EA9C67332A67632EA7 /* WorkspacePlaybackRuntime.swift in Sources */,
+				DB954DB69E3FAC5F7683E754 /* WorkspacePresentationModifiers.swift in Sources */,
+				EE5C5ADBC61CA60868521571 /* WorkspaceProjectMutationExecutor.swift in Sources */,
+				D2971B495D548268B935CFA8 /* WorkspaceRenameDraft.swift in Sources */,
+				B7ABBEA4E38CFA9A54A673B6 /* WorkspaceRitualTiming.swift in Sources */,
+				4251F055A57AB0B1D531F559 /* WorkspaceRootChromeViews.swift in Sources */,
+				96A7FC3D919401F84F876D23 /* WorkspaceSettingsSheet.swift in Sources */,
+				7CD8A01068A3EC1795FEBB7B /* WorkspaceSongContainerCoordinator.swift in Sources */,
+				3FCF108D8B1F4E1FEE2CA893 /* WorkspaceStatusViews.swift in Sources */,
+				9866AB7C9612D35B25E00010 /* WorkspaceTrackMutationExecutor.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		685F7A0792F70D84C151D3B6 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 29587690CE67C4B9535DECFF /* MotionRevealLiveActivity */;
+			targetProxy = 0F9586697C838EC9451B13E0 /* PBXContainerItemProxy */;
+		};
+		7B7C514ED37CB72DC534340B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = A41FD9BC3BB379CE3C51C283 /* MotionReveal */;
+			targetProxy = B93FE780DB034A86C19BDF3A /* PBXContainerItemProxy */;
+		};
+		D90491CBA16BD01E58453048 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = A41FD9BC3BB379CE3C51C283 /* MotionReveal */;
+			targetProxy = A136C07D2D111A3DF252A7BF /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		21F69A13E68923DBDE30C749 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 2M778W8LTC;
+				INFOPLIST_FILE = MotionRevealLiveActivity/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.jjuzzi.motionreveal.MotionRevealLiveActivity;
+				PRODUCT_MODULE_NAME = MotionRevealLiveActivity;
+				PRODUCT_NAME = MotionRevealLiveActivity;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = YES;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Release;
+		};
+		22FE6D4A34127467E70B85E2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 33;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"DEBUG=1",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MARKETING_VERSION = 0.1.1;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 6.0;
+			};
+			name = Debug;
+		};
+		38E1E022966AA4A1E287A9EE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.jjuzzi.motionreveal.uitests;
+				SDKROOT = iphoneos;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = MotionReveal;
+			};
+			name = Release;
+		};
+		5CECD43CDB4DB0B3F3A2BA90 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 2M778W8LTC;
+				INFOPLIST_FILE = MotionRevealLiveActivity/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.jjuzzi.motionreveal.MotionRevealLiveActivity;
+				PRODUCT_MODULE_NAME = MotionRevealLiveActivity;
+				PRODUCT_NAME = MotionRevealLiveActivity;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = YES;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Debug;
+		};
+		609035FAE9744AC2BC09CA84 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 33;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MARKETING_VERSION = 0.1.1;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 6.0;
+			};
+			name = Release;
+		};
+		77DB8472D05C14E0FEDACA40 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.jjuzzi.motionreveal.tests;
+				SDKROOT = iphoneos;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MotionReveal.app/MotionReveal";
+			};
+			name = Release;
+		};
+		938D97F3B1F71741A9175268 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = MotionReveal/MotionReveal.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_ASSET_PATHS = "";
+				DEVELOPMENT_TEAM = 2M778W8LTC;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = MotionReveal/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.jjuzzi.motionreveal;
+				PRODUCT_MODULE_NAME = MotionReveal;
+				PRODUCT_NAME = MotionReveal;
+				SDKROOT = iphoneos;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = YES;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Debug;
+		};
+		A7F6FB0C2C3BF6FE22637515 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = MotionReveal/MotionReveal.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_ASSET_PATHS = "";
+				DEVELOPMENT_TEAM = 2M778W8LTC;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = MotionReveal/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.jjuzzi.motionreveal;
+				PRODUCT_MODULE_NAME = MotionReveal;
+				PRODUCT_NAME = MotionReveal;
+				SDKROOT = iphoneos;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = YES;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Release;
+		};
+		B62C47F7BF0C500F14093195 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.jjuzzi.motionreveal.uitests;
+				SDKROOT = iphoneos;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = MotionReveal;
+			};
+			name = Debug;
+		};
+		BD509571E674FAB6FCEBD8F8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.jjuzzi.motionreveal.tests;
+				SDKROOT = iphoneos;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MotionReveal.app/MotionReveal";
+			};
+			name = Debug;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		04D19E134AE80222515E6907 /* Build configuration list for PBXProject "MotionReveal" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				22FE6D4A34127467E70B85E2 /* Debug */,
+				609035FAE9744AC2BC09CA84 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		137AAD1E28183F0BCE79EAF6 /* Build configuration list for PBXNativeTarget "MotionRevealLiveActivity" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5CECD43CDB4DB0B3F3A2BA90 /* Debug */,
+				21F69A13E68923DBDE30C749 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		4F29EBBC50055412F6E493AE /* Build configuration list for PBXNativeTarget "MotionReveal" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				938D97F3B1F71741A9175268 /* Debug */,
+				A7F6FB0C2C3BF6FE22637515 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		A126FF2235A4C624164160B3 /* Build configuration list for PBXNativeTarget "MotionRevealUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B62C47F7BF0C500F14093195 /* Debug */,
+				38E1E022966AA4A1E287A9EE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		F6072532612040640CFFC57D /* Build configuration list for PBXNativeTarget "MotionRevealTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BD509571E674FAB6FCEBD8F8 /* Debug */,
+				77DB8472D05C14E0FEDACA40 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		62FDE737E03B886917748342 /* XCRemoteSwiftPackageReference "rive-ios" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/rive-app/rive-ios.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 6.20.5;
+			};
+		};
+		7B5557AF4688758D6F408DA5 /* XCRemoteSwiftPackageReference "ShaderKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/jamesrochabrun/ShaderKit.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.2.4;
+			};
+		};
+		7CDC26484B034FA02028049B /* XCRemoteSwiftPackageReference "lottie-spm" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/airbnb/lottie-spm.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.6.0;
+			};
+		};
+		F14443E37589FCAEE98E70F1 /* XCRemoteSwiftPackageReference "Inferno" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/twostraws/Inferno.git";
+			requirement = {
+				kind = revision;
+				revision = a40c7a0bdec03aae1bd0b96c41d6a75451bafd2c;
+			};
+		};
+		F3A630087E1944C431DA0302 /* XCRemoteSwiftPackageReference "Motion" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/b3ll/Motion.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.1.5;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		0CC3B1751BE90E182D4B7E0C /* RiveRuntime */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 62FDE737E03B886917748342 /* XCRemoteSwiftPackageReference "rive-ios" */;
+			productName = RiveRuntime;
+		};
+		1B6E1AD95C64055927DCABDE /* Motion */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F3A630087E1944C431DA0302 /* XCRemoteSwiftPackageReference "Motion" */;
+			productName = Motion;
+		};
+		21EB2F88B0E44645605969FE /* Inferno */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F14443E37589FCAEE98E70F1 /* XCRemoteSwiftPackageReference "Inferno" */;
+			productName = Inferno;
+		};
+		7AD65A461B65D32FD11D0D95 /* ShaderKitUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 7B5557AF4688758D6F408DA5 /* XCRemoteSwiftPackageReference "ShaderKit" */;
+			productName = ShaderKitUI;
+		};
+		7DB225DE8F56802956FA7ED4 /* Lottie */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 7CDC26484B034FA02028049B /* XCRemoteSwiftPackageReference "lottie-spm" */;
+			productName = Lottie;
+		};
+		B8D3080A1457ADB9A80E0ACF /* ShaderKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 7B5557AF4688758D6F408DA5 /* XCRemoteSwiftPackageReference "ShaderKit" */;
+			productName = ShaderKit;
+		};
+/* End XCSwiftPackageProductDependency section */
+	};
+	rootObject = 4E87E2475C8748B32D2D5C95 /* Project object */;
+}

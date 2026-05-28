@@ -1,0 +1,59 @@
+{
+  "originHash" : "3c1378f8c3d91f22e93930210029583c76737a258108b57c85d1fabd2d74ab92",
+  "pins" : [
+    {
+      "identity" : "inferno",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/twostraws/Inferno.git",
+      "state" : {
+        "revision" : "a40c7a0bdec03aae1bd0b96c41d6a75451bafd2c"
+      }
+    },
+    {
+      "identity" : "lottie-spm",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/airbnb/lottie-spm.git",
+      "state" : {
+        "revision" : "69faaefa7721fba9e434a52c16adf4329c9084db",
+        "version" : "4.6.0"
+      }
+    },
+    {
+      "identity" : "motion",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/b3ll/Motion.git",
+      "state" : {
+        "revision" : "d0439dd8f31ef16c3e17ef12e8d1921b00341d67",
+        "version" : "0.1.5"
+      }
+    },
+    {
+      "identity" : "rive-ios",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/rive-app/rive-ios.git",
+      "state" : {
+        "revision" : "92dfc6d7ead8a26b71629a7fc51aeefb50b6613b",
+        "version" : "6.20.5"
+      }
+    },
+    {
+      "identity" : "shaderkit",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/jamesrochabrun/ShaderKit.git",
+      "state" : {
+        "revision" : "cfa7858252adfcf6f0ac94aea58399bc8a6b2dcf",
+        "version" : "1.2.4"
+      }
+    },
+    {
+      "identity" : "swift-numerics",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/apple/swift-numerics",
+      "state" : {
+        "revision" : "0c0290ff6b24942dadb83a929ffaaa1481df04a2",
+        "version" : "1.1.1"
+      }
+    }
+  ],
+  "version" : 3
+}

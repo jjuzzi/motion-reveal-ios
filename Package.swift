@@ -15,15 +15,15 @@ let package = Package(
         )
     ],
     dependencies: [
-        .package(url: "https://github.com/rive-app/rive-ios", from: "6.13.0"),
-        .package(url: "https://github.com/airbnb/lottie-spm.git", from: "4.6.0")
+        .package(url: "https://github.com/airbnb/lottie-spm.git", from: "4.6.0"),
+        .package(url: "https://github.com/rive-app/rive-ios.git", from: "6.20.5")
     ],
     targets: [
         .target(
             name: "DependencySmokeTest",
             dependencies: [
-                .product(name: "RiveRuntime", package: "rive-ios"),
-                .product(name: "Lottie", package: "lottie-spm")
+                .product(name: "Lottie", package: "lottie-spm"),
+                .product(name: "RiveRuntime", package: "rive-ios")
             ]
         )
     ]
