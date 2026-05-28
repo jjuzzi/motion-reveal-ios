@@ -39,6 +39,18 @@ struct MusicProject: Codable, Equatable, Identifiable, Sendable {
     var legacyCoverMotionArtwork: MotionArtwork? {
         tracks.first(where: { $0.animatedArtwork != nil })?.animatedArtwork
     }
+
+    func displayedCoverMotionArtwork(for track: MusicTrack?) -> MotionArtwork? {
+        if let coverMotionArtwork {
+            return coverMotionArtwork
+        }
+
+        guard coverMotionArtworkIsExplicit != true else {
+            return nil
+        }
+
+        return track?.animatedArtwork ?? legacyCoverMotionArtwork
+    }
 }
 
 enum ProjectState: Codable, Equatable, Sendable {

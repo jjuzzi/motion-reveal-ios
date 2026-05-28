@@ -27,8 +27,6 @@ private struct SleeveSourceFrameReader: View {
 
 struct LibraryScreen: View {
     let projects: [MusicProject]
-    let heroNamespace: Namespace.ID
-    let heroMotionEnabled: Bool
     let openProject: (MusicProject, CGRect?) -> Void
     let recordLeadSourceRect: (CGRect?) -> Void
     let openMenu: (MusicProject) -> Void
@@ -56,8 +54,6 @@ struct LibraryScreen: View {
                 } else {
                     ProjectIconGrid(
                         projects: projects,
-                        heroNamespace: heroNamespace,
-                        heroMotionEnabled: heroMotionEnabled,
                         openProject: openProject,
                         openMenu: openMenu,
                         renameProject: renameProject,
@@ -74,8 +70,6 @@ struct LibraryScreen: View {
 
 private struct ProjectIconGrid: View {
     let projects: [MusicProject]
-    let heroNamespace: Namespace.ID
-    let heroMotionEnabled: Bool
     let openProject: (MusicProject, CGRect?) -> Void
     let openMenu: (MusicProject) -> Void
     let renameProject: (MusicProject) -> Void
@@ -91,8 +85,6 @@ private struct ProjectIconGrid: View {
             ForEach(projects) { project in
                 ProjectIconTile(
                     project: project,
-                    heroNamespace: heroNamespace,
-                    heroMotionEnabled: heroMotionEnabled,
                     openProject: { sourceRect in
                         openProject(project, sourceRect)
                     },
@@ -114,8 +106,6 @@ private struct ProjectIconGrid: View {
 
 private struct ProjectIconTile: View {
     let project: MusicProject
-    let heroNamespace: Namespace.ID
-    let heroMotionEnabled: Bool
     let openProject: (CGRect?) -> Void
     let openMenu: () -> Void
     let renameProject: () -> Void
@@ -132,11 +122,6 @@ private struct ProjectIconTile: View {
                     motionArtwork: project.displayedCoverMotionArtwork,
                     playbackPolicy: .animated
                 )
-                    .workspaceHeroMatched(
-                        id: WorkspaceHeroMotion.projectArtworkID(project.id),
-                        in: heroNamespace,
-                        isEnabled: heroMotionEnabled
-                    )
                     .aspectRatio(1, contentMode: .fit)
                     .clipShape(RoundedRectangle(cornerRadius: 22, style: .continuous))
                     .overlay {

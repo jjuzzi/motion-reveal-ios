@@ -2,8 +2,6 @@ import SwiftUI
 
 struct ProjectScreen: View {
     let project: MusicProject
-    let heroNamespace: Namespace.ID
-    let heroMotionEnabled: Bool
     @Binding var searchText: String
     @Binding var isSearchVisible: Bool
     let playProject: () -> Void
@@ -14,7 +12,8 @@ struct ProjectScreen: View {
     let changeCover: () -> Void
     let openMenu: (WorkspaceActionKind) -> Void
     let openTrackMenu: (MusicTrack) -> Void
-    let bottomContentInset: CGFloat
+    let isMiniPlayerVisible: Bool
+    let bottomContentPadding: CGFloat
 
     private var filteredTracks: [MusicTrack] {
         project.tracks.filteredByStudioSearch(searchText)
@@ -24,129 +23,147 @@ struct ProjectScreen: View {
         !searchText.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty
     }
 
+    private static let topScrollAnchor = "project-screen-top"
+
     var body: some View {
-        ScrollView(showsIndicators: false) {
-            VStack(alignment: .leading, spacing: 24) {
-                WorkspaceTopBar(
-                    eyebrow: nil,
-                    title: nil,
-                    leadingAction: WorkspaceIconAction(systemName: "chevron.left", label: "Back", action: back),
-                    trailingButtons: [
-                        WorkspaceIconAction(systemName: "link", label: "Copy link") {},
-                        WorkspaceIconAction(systemName: "magnifyingglass", label: "Search project") {
-                            withAnimation(.spring(response: 0.28, dampingFraction: 0.88)) {
-                                isSearchVisible.toggle()
-                                if !isSearchVisible {
-                                    searchText = ""
+        GeometryReader { proxy in
+            ScrollViewReader { scrollProxy in
+                ScrollView(showsIndicators: false) {
+                    VStack(alignment: .leading, spacing: 24) {
+                        WorkspaceTopBar(
+                            eyebrow: nil,
+                            title: nil,
+                            leadingAction: WorkspaceIconAction(systemName: "chevron.left", label: "Back", action: back),
+                            trailingButtons: [
+                                WorkspaceIconAction(systemName: "link", label: "Copy link") {},
+                                WorkspaceIconAction(systemName: "magnifyingglass", label: "Search project") {
+                                    withAnimation(.spring(response: 0.28, dampingFraction: 0.88)) {
+                                        isSearchVisible.toggle()
+                                        if !isSearchVisible {
+                                            searchText = ""
+                                        }
+                                    }
+                                },
+                                WorkspaceIconAction(systemName: "ellipsis", label: "Project actions") {
+                                    openMenu(.project)
                                 }
-                            }
-                        },
-                        WorkspaceIconAction(systemName: "ellipsis", label: "Project actions") {
-                            openMenu(.project)
-                        }
-                    ]
-                )
-                .padding(.top, 60)
-
-                VStack(alignment: .leading, spacing: 18) {
-                    MotionSleeveArtworkView(artwork: project.sleeve, motionArtwork: project.displayedCoverMotionArtwork)
-                        .frame(maxWidth: .infinity)
-                        .aspectRatio(1, contentMode: .fit)
-                        .workspaceHeroMatched(
-                            id: WorkspaceHeroMotion.projectArtworkID(project.id),
-                            in: heroNamespace,
-                            isEnabled: heroMotionEnabled
+                            ]
                         )
-                        .clipShape(RoundedRectangle(cornerRadius: 24, style: .continuous))
-                        .overlay {
-                            RoundedRectangle(cornerRadius: 24, style: .continuous)
-                                .stroke(Color.white.opacity(0.08), lineWidth: 1)
-                        }
-                        .shadow(color: .black.opacity(0.35), radius: 26, x: 0, y: 16)
-                        .contextMenu {
-                            Button("Change Cover", systemImage: "photo") {
-                                changeCover()
-                            }
+                        .padding(.top, 60)
+                        .id(Self.topScrollAnchor)
 
-                            Button("Rename Project", systemImage: "pencil") {
-                                renameProject()
-                            }
-                        }
-                        .accessibilityHint("Touch and hold for cover and rename options.")
+                        VStack(alignment: .leading, spacing: 18) {
+                            let artworkSideLength = artworkSideLength(in: proxy.size)
 
-                    HStack(alignment: .bottom, spacing: 14) {
-                        VStack(alignment: .leading, spacing: 5) {
-                            Text(project.title)
-                                .font(StudioType.projectTitle)
-                                .foregroundStyle(Color.studioText)
-                                .lineLimit(2)
+                            MotionSleeveArtworkView(artwork: project.sleeve, motionArtwork: project.displayedCoverMotionArtwork)
+                                .frame(width: artworkSideLength, height: artworkSideLength)
+                                .clipShape(RoundedRectangle(cornerRadius: 24, style: .continuous))
+                                .overlay {
+                                    RoundedRectangle(cornerRadius: 24, style: .continuous)
+                                        .stroke(Color.white.opacity(0.08), lineWidth: 1)
+                                }
+                                .shadow(color: .black.opacity(0.35), radius: 26, x: 0, y: 16)
+                                .frame(maxWidth: .infinity, alignment: .center)
                                 .contextMenu {
+                                    Button("Change Cover", systemImage: "photo") {
+                                        changeCover()
+                                    }
+
                                     Button("Rename Project", systemImage: "pencil") {
                                         renameProject()
                                     }
                                 }
+                                .accessibilityHint("Touch and hold for cover and rename options.")
 
-                            Text(project.metadata)
-                                .font(StudioType.metadata)
-                                .foregroundStyle(Color.studioMuted)
-                                .lineLimit(2)
-                        }
+                            HStack(alignment: .bottom, spacing: 14) {
+                                VStack(alignment: .leading, spacing: 5) {
+                                    Text(project.title)
+                                        .font(StudioType.projectTitle)
+                                        .foregroundStyle(Color.studioText)
+                                        .lineLimit(2)
+                                        .contextMenu {
+                                            Button("Rename Project", systemImage: "pencil") {
+                                                renameProject()
+                                            }
+                                        }
 
-                        Spacer(minLength: 12)
+                                    Text(project.metadata)
+                                        .font(StudioType.metadata)
+                                        .foregroundStyle(Color.studioMuted)
+                                        .lineLimit(2)
+                                }
 
-                        Button(action: playProject) {
-                            Image(systemName: "play.fill")
-                                .font(.system(size: 19, weight: .bold))
-                                .foregroundStyle(Color.studioBackground)
-                                .offset(x: 1)
-                                .frame(width: 56, height: 56)
-                                .background(Color.studioText, in: Circle())
-                                .shadow(color: Color.studioText.opacity(0.16), radius: 12, x: 0, y: 4)
-                        }
-                        .buttonStyle(.plain)
-                        .accessibilityLabel("Play project")
-                        .accessibilityIdentifier("project-play")
-                    }
+                                Spacer(minLength: 12)
 
-                    if isSearchVisible {
-                        ProjectSearchField(searchText: $searchText)
-                    }
-
-                    Button(action: addTrack) {
-                        Label("Add tracks", systemImage: "plus")
-                            .font(StudioType.control)
-                            .frame(maxWidth: .infinity)
-                            .frame(height: 50)
-                            .foregroundStyle(Color.studioText)
-                            .background(Color.black.opacity(0.16), in: Capsule())
-                            .overlay {
-                                Capsule()
-                                    .stroke(Color.white.opacity(0.075), lineWidth: 1)
+                                Button(action: playProject) {
+                                    Image(systemName: "play.fill")
+                                        .font(.system(size: 19, weight: .bold))
+                                        .foregroundStyle(Color.studioBackground)
+                                        .offset(x: 1)
+                                        .frame(width: 56, height: 56)
+                                        .background(Color.studioText, in: Circle())
+                                        .shadow(color: Color.studioText.opacity(0.16), radius: 12, x: 0, y: 4)
+                                }
+                                .buttonStyle(.plain)
+                                .accessibilityLabel("Play project")
+                                .accessibilityIdentifier("project-play")
                             }
-                    }
-                    .buttonStyle(.plain)
-                    .accessibilityIdentifier("add-tracks")
 
-                    if project.tracks.isEmpty {
-                        EmptyTrackStateView(addTrack: addTrack)
-                    } else if filteredTracks.isEmpty, isSearching {
-                        ContentUnavailableView.search
-                            .foregroundStyle(Color.studioMuted)
-                            .frame(maxWidth: .infinity)
-                            .padding(.vertical, 28)
-                    } else {
-                        TrackList(
-                            tracks: filteredTracks,
-                            playTrack: playTrack,
-                            openMenu: openTrackMenu
-                        )
+                            if isSearchVisible {
+                                ProjectSearchField(searchText: $searchText)
+                            }
+
+                            Button(action: addTrack) {
+                                Label("Add tracks", systemImage: "plus")
+                                    .font(StudioType.control)
+                                    .frame(maxWidth: .infinity)
+                                    .frame(height: 50)
+                                    .foregroundStyle(Color.studioText)
+                                    .background(Color.black.opacity(0.16), in: Capsule())
+                                    .overlay {
+                                        Capsule()
+                                            .stroke(Color.white.opacity(0.075), lineWidth: 1)
+                                    }
+                            }
+                            .buttonStyle(.plain)
+                            .accessibilityIdentifier("add-tracks")
+
+                            if project.tracks.isEmpty {
+                                EmptyTrackStateView(addTrack: addTrack)
+                            } else if filteredTracks.isEmpty, isSearching {
+                                ContentUnavailableView.search
+                                    .foregroundStyle(Color.studioMuted)
+                                    .frame(maxWidth: .infinity)
+                                    .padding(.vertical, 28)
+                            } else {
+                                TrackList(
+                                    tracks: filteredTracks,
+                                    playTrack: playTrack,
+                                    openMenu: openTrackMenu
+                                )
+                            }
+                        }
                     }
+                    .padding(.horizontal, 22)
+                    .padding(.bottom, bottomContentPadding)
+                }
+                .scrollBounceBehavior(.basedOnSize)
+                .accessibilityIdentifier("project-screen")
+                .onChange(of: project.id) {
+                    scrollProxy.scrollTo(Self.topScrollAnchor, anchor: .top)
                 }
             }
-            .padding(.horizontal, 22)
-            .padding(.bottom, bottomContentInset)
         }
-        .accessibilityIdentifier("project-screen")
+    }
+
+    private func artworkSideLength(in size: CGSize) -> CGFloat {
+        let maxWidth = max(0, size.width - 44)
+        guard isMiniPlayerVisible, !project.tracks.isEmpty else {
+            return maxWidth
+        }
+
+        let compactLength = min(maxWidth, size.height * 0.34)
+        return max(238, compactLength)
     }
 }
 

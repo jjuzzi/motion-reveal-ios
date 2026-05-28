@@ -29,7 +29,7 @@ struct MiniPlayer: View {
 
             MotionSleeveArtworkView(
                 artwork: project.sleeve,
-                motionArtwork: track.animatedArtwork ?? project.displayedCoverMotionArtwork,
+                motionArtwork: project.displayedCoverMotionArtwork(for: track),
                 playbackPolicy: .still
             )
                 .workspaceHeroMatched(
@@ -59,7 +59,7 @@ struct MiniPlayer: View {
                     .frame(maxWidth: .infinity, alignment: .leading)
                     .layoutPriority(1)
 
-                    MiniWaveform(markers: markers, progress: progress.fraction)
+                    MiniWaveform(markers: markers, progress: progress)
                         .frame(width: 78, height: 28)
                         .accessibilityHidden(true)
                 }
@@ -82,14 +82,15 @@ struct MiniPlayer: View {
         .background {
             NowPlayingCapsuleGlow(artwork: project.sleeve)
                 .clipShape(RoundedRectangle(cornerRadius: 20, style: .continuous))
-                .opacity(0.24)
+                .opacity(0.16)
         }
-        .background(Color.studioPanelRaised.opacity(0.84), in: RoundedRectangle(cornerRadius: 20, style: .continuous))
+        .background(.regularMaterial, in: RoundedRectangle(cornerRadius: 20, style: .continuous))
+        .background(Color.studioPanelRaised.opacity(0.97), in: RoundedRectangle(cornerRadius: 20, style: .continuous))
         .overlay {
             RoundedRectangle(cornerRadius: 20, style: .continuous)
-                .stroke(Color.white.opacity(0.07), lineWidth: 1)
+                .stroke(Color.white.opacity(0.10), lineWidth: 1)
         }
-        .shadow(color: .black.opacity(0.24), radius: 16, x: 0, y: 8)
+        .shadow(color: .black.opacity(0.34), radius: 18, x: 0, y: 10)
         .contentShape(RoundedRectangle(cornerRadius: 20, style: .continuous))
         .simultaneousGesture(
             DragGesture(minimumDistance: 6)
@@ -160,41 +161,128 @@ private struct MiniPlayButton: View {
 
 private struct MiniWaveform: View {
     let markers: [WaveformMarker]
-    let progress: Double
-    private let bars = Array([CGFloat].waveformBars[12..<41])
+    let progress: PlaybackProgress
+    @Environment(\.accessibilityReduceMotion) private var reduceMotion
+    @State private var progressAnchorElapsed: TimeInterval = 0
+    @State private var progressAnchorDate = Date()
+    private static let bars = Array([CGFloat].waveformBars[12..<41])
+
+    private var timelinePaused: Bool {
+        reduceMotion || !progress.isPlaying
+    }
 
     var body: some View {
         GeometryReader { proxy in
-            ZStack {
-                HStack(spacing: 2) {
-                    ForEach(Array(bars.enumerated()), id: \.offset) { index, height in
-                        let progressIndex = min(
-                            max(Int(progress * Double(max(bars.count - 1, 1))), 0),
-                            bars.count - 1
+            TimelineView(.animation(minimumInterval: 1.0 / 60.0, paused: timelinePaused)) { timeline in
+                let liveFraction = displayedFraction(at: timeline.date)
+
+                ZStack {
+                    Canvas(rendersAsynchronously: true) { context, size in
+                        let bars = Self.bars
+                        let horizontalInset: CGFloat = 5
+                        let barSpacing: CGFloat = 2
+                        let availableWidth = max(1, size.width - horizontalInset * 2)
+                        let barWidth = max(1.25, (availableWidth - CGFloat(bars.count - 1) * barSpacing) / CGFloat(bars.count))
+                        let playedThreshold = CGFloat(min(max(liveFraction, 0), 1))
+                        let phase = CGFloat(timeline.date.timeIntervalSinceReferenceDate)
+                        let bedRect = CGRect(x: 0, y: 2, width: size.width, height: size.height - 4)
+                        let bedPath = Path(roundedRect: bedRect, cornerRadius: bedRect.height / 2)
+
+                        context.fill(bedPath, with: .color(Color.black.opacity(0.14)))
+
+                        for (index, height) in bars.enumerated() {
+                            let barFraction = CGFloat(index) / CGFloat(max(bars.count - 1, 1))
+                            let distance = abs(barFraction - playedThreshold)
+                            let active = Self.activeFalloff(distance: distance)
+                            let pulse = reduceMotion || !progress.isPlaying ? 0 : sin(phase * 4.8 + CGFloat(index) * 0.42)
+                            let liftedHeight = max(4, 22 * height * (1 + active * (0.14 + 0.035 * pulse)))
+                            let x = horizontalInset + CGFloat(index) * (barWidth + barSpacing)
+                            let rect = CGRect(
+                                x: x,
+                                y: size.height / 2 - liftedHeight / 2,
+                                width: barWidth,
+                                height: liftedHeight
+                            )
+                            let color = Self.barColor(
+                                barFraction: barFraction,
+                                playedThreshold: playedThreshold,
+                                activeFalloff: active
+                            )
+
+                            context.fill(
+                                Path(roundedRect: rect, cornerRadius: barWidth / 2),
+                                with: .color(color)
+                            )
+                        }
+
+                        let playheadX = horizontalInset + availableWidth * playedThreshold
+                        let playheadRect = CGRect(
+                            x: playheadX - 1,
+                            y: size.height / 2 - 12,
+                            width: 2,
+                            height: 24
                         )
 
-                        if index == progressIndex {
-                            Capsule()
-                                .fill(Color.studioGold)
-                                .frame(width: 1.6, height: 24)
-                        } else {
-                            Capsule()
-                                .fill(Color.studioText.opacity(index < progressIndex ? 0.78 : 0.28))
-                                .frame(width: 1.8, height: max(4, 23 * height))
+                        context.drawLayer { layer in
+                            layer.addFilter(.shadow(color: Color.studioGold.opacity(0.22), radius: 3, x: 0, y: 0))
+                            layer.fill(
+                                Path(roundedRect: playheadRect, cornerRadius: 1),
+                                with: .color(Color.white.opacity(0.86))
+                            )
                         }
                     }
-                }
-                .padding(.horizontal, 4)
-                .clipped()
 
-                ForEach(markers) { marker in
-                    Capsule()
-                        .fill(marker.color.opacity(0.78))
-                        .frame(width: 1.5, height: max(11, 24 * marker.height))
-                        .position(x: 4 + (proxy.size.width - 8) * marker.position, y: proxy.size.height / 2)
+                    ForEach(markers) { marker in
+                        Capsule()
+                            .fill(marker.color.opacity(0.74))
+                            .frame(width: 1.5, height: max(11, 24 * marker.height))
+                            .position(x: 5 + (proxy.size.width - 10) * marker.position, y: proxy.size.height / 2)
+                    }
                 }
             }
         }
         .clipShape(RoundedRectangle(cornerRadius: 8, style: .continuous))
+        .onAppear {
+            resetProgressAnchor(to: progress)
+        }
+        .onChange(of: progress) { _, newProgress in
+            resetProgressAnchor(to: newProgress)
+        }
+    }
+
+    private func displayedFraction(at date: Date) -> Double {
+        guard progress.isPlaying, !reduceMotion, progress.duration > 0 else {
+            return progress.fraction
+        }
+
+        let elapsed = min(progress.duration, progressAnchorElapsed + max(0, date.timeIntervalSince(progressAnchorDate)))
+        return min(max(elapsed / progress.duration, 0), 1)
+    }
+
+    private func resetProgressAnchor(to progress: PlaybackProgress) {
+        progressAnchorElapsed = progress.elapsed
+        progressAnchorDate = Date()
+    }
+
+    private static func activeFalloff(distance: CGFloat) -> CGFloat {
+        let radius: CGFloat = 0.13
+        let normalized = max(0, 1 - distance / radius)
+        return normalized * normalized
+    }
+
+    private static func barColor(
+        barFraction: CGFloat,
+        playedThreshold: CGFloat,
+        activeFalloff: CGFloat
+    ) -> Color {
+        if activeFalloff > 0.48 {
+            return Color.white.opacity(0.60 + Double(activeFalloff) * 0.24)
+        }
+
+        if barFraction <= playedThreshold {
+            return Color.studioGold.opacity(0.42 + Double(activeFalloff) * 0.30)
+        }
+
+        return Color.studioText.opacity(0.18 + Double(activeFalloff) * 0.22)
     }
 }

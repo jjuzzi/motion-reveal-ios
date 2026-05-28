@@ -30,7 +30,7 @@ enum NowPlayingInfoPublisher {
         }
 
 #if compiler(>=6.3)
-        let motionArtwork = track.animatedArtwork ?? project.displayedCoverMotionArtwork
+        let motionArtwork = project.displayedCoverMotionArtwork(for: track)
         if #available(iOS 26.0, *),
            let artwork = motionArtwork,
            let videoURL = libraryStore.animatedArtworkURL(for: artwork) {
@@ -51,7 +51,7 @@ enum NowPlayingInfoPublisher {
         libraryStore: MusicLibraryStore,
         targetSize: CGSize = CGSize(width: 512, height: 512)
     ) -> UIImage? {
-        if let artwork = track?.animatedArtwork ?? project.displayedCoverMotionArtwork,
+        if let artwork = project.displayedCoverMotionArtwork(for: track),
            let videoURL = libraryStore.animatedArtworkURL(for: artwork),
            let preview = previewImageSynchronously(for: videoURL, requestedSize: targetSize) {
             return preview

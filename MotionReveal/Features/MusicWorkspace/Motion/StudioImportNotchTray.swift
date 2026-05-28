@@ -17,9 +17,11 @@ struct StudioImportNotchTray: View {
             let collapsedHeight: CGFloat = DynamicIslandEdgeBeamMetrics.height
             let expandedWidth = min(proxy.size.width - 30, 382)
             let expandedHeight: CGFloat = 394
-            let topOffset = hasDynamicIsland
+            let collapsedTopOffset = hasDynamicIsland
                 ? 11 + max(safeArea.top - 59, 0)
                 : (isExpanded ? safeArea.top + 10 : -collapsedHeight)
+            let expandedTopOffset = safeArea.top + (hasDynamicIsland ? 24 : 10)
+            let topOffset = isExpanded ? expandedTopOffset : collapsedTopOffset
 
             ZStack(alignment: .top) {
                 Color.black
@@ -60,10 +62,10 @@ struct StudioImportNotchTray: View {
                         .fill(Color.studioBackground.opacity(0.64))
                 }
 
-            DynamicIslandEdgeBeam(isReady: true, isArmed: false, pull: isExpanded ? DynamicSlotPullResponse.openThreshold : 0)
-                .opacity(isExpanded ? 0.30 : 0.86)
+            DynamicIslandEdgeBeam(isReady: true, isArmed: false, pull: 0)
+                .opacity(isExpanded ? 0 : 0.86)
                 .frame(maxHeight: .infinity, alignment: .top)
-                .padding(.top, isExpanded ? 10 : 0)
+                .padding(.top, 0)
 
             expandedContent
                 .padding(.horizontal, 22)

@@ -43,3 +43,15 @@ stack from `Docs/AgentOperatingStack.md` in force for all work under this tree.
 - Respect Reduce Motion before calling motion-heavy work production-ready.
 - Verify meaningful SwiftUI changes with XcodeBuildMCP build/run or simulator
   tests when available.
+
+## Session Checkpoint Rule
+
+- At the end of each meaningful working session, default to a coherent git
+  checkpoint once the code builds/verifies and the user has not asked to avoid
+  commits. Prefer one commit per working batch, not one commit per tiny
+  correction.
+- Do not commit broken throwaway states. If an experiment fails, remove the
+  broken code but preserve the lesson in the commit body using Lore trailers,
+  especially `Rejected:`, `Tested:`, and `Not-tested:`.
+- Keep unrelated work out of the checkpoint. If the session mixes unrelated
+  fixes, split them into separate commits or report the split before committing.

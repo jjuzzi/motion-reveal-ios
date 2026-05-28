@@ -10,11 +10,10 @@ private enum LaunchSetupStage {
 struct MusicWorkspaceView: View {
     private static let onboardingVersion = 2
     private static let previousTrackDoubleTapWindow: TimeInterval = 0.45
-    private static let projectBottomInsetWithoutPlayer: CGFloat = 138
-    private static let projectBottomInsetWithMiniPlayer: CGFloat = 276
-    private static let miniPlayerBottomPadding: CGFloat = 52
+    private static let projectBottomContentPadding: CGFloat = 28
+    private static let miniPlayerBottomPadding: CGFloat = 24
     private static let toastBottomPaddingWithoutPlayer: CGFloat = 30
-    private static let toastBottomPaddingWithMiniPlayer: CGFloat = 140
+    private static let toastBottomPaddingWithMiniPlayer: CGFloat = 112
 
     @AppStorage("studioOnboardingVersion") private var studioOnboardingVersion = 0
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
@@ -83,6 +82,10 @@ struct MusicWorkspaceView: View {
 
     private var isCreatedAlbumDiscStage: Bool {
         createdAlbumDiscPromptProject != nil || ritualPhase == .creating
+    }
+
+    private var isSlotChromeSuppressed: Bool {
+        isImportTrayPresented || activeMenu != nil || importStatus != nil || isSettingsPresented
     }
 
     private var ritualReduceMotion: Bool {
@@ -227,8 +230,6 @@ struct MusicWorkspaceView: View {
                     case .library:
                         LibraryScreen(
                             projects: projects,
-                            heroNamespace: heroNamespace,
-                            heroMotionEnabled: heroMotionEnabled,
                             openProject: { project, sourceRect in
                                 loadProject(project, sourceRect: sourceRect)
                             },
@@ -251,8 +252,6 @@ struct MusicWorkspaceView: View {
                     case .project:
                         ProjectScreen(
                             project: selectedProject,
-                            heroNamespace: heroNamespace,
-                            heroMotionEnabled: heroMotionEnabled,
                             searchText: $projectSearchText,
                             isSearchVisible: $isProjectSearchVisible,
                             playProject: playProject,
@@ -263,9 +262,8 @@ struct MusicWorkspaceView: View {
                             changeCover: presentProjectCoverImporter,
                             openMenu: openMenu,
                             openTrackMenu: openTrackMenu,
-                            bottomContentInset: nowPlaying == nil
-                                ? Self.projectBottomInsetWithoutPlayer
-                                : Self.projectBottomInsetWithMiniPlayer
+                            isMiniPlayerVisible: nowPlaying != nil,
+                            bottomContentPadding: Self.projectBottomContentPadding
                         )
                         .transition(.opacity)
                     }
@@ -275,38 +273,40 @@ struct MusicWorkspaceView: View {
                 .animation(.spring(response: 0.46, dampingFraction: 0.88), value: songContainerOpen)
                 .allowsHitTesting(!isRitualBlockingWorkspace)
                 .accessibilityHidden(isRitualBlockingWorkspace)
+                .safeAreaInset(edge: .bottom, spacing: 0) {
+                    if let nowPlaying, !songContainerOpen {
+                        MiniPlayer(
+                            project: selectedProject,
+                            track: nowPlaying,
+                            markers: nowPlaying.markers,
+                            playbackRuntime: playbackRuntime,
+                            heroNamespace: heroNamespace,
+                            heroMotionEnabled: heroMotionEnabled,
+                            canPlayPrevious: canPlayPrevious,
+                            canPlayNext: canPlayNext,
+                            openSongContainer: openSongContainer,
+                            togglePlayback: togglePlayback,
+                            playPrevious: handlePreviousTransportTap,
+                            playNext: playNextTrack,
+                            stopPlayback: stopPlayback
+                        )
+                        .padding(.horizontal, 18)
+                        .padding(.top, 10)
+                        .padding(.bottom, Self.miniPlayerBottomPadding)
+                        .zIndex(45)
+                        .transition(.move(edge: .bottom).combined(with: .opacity))
+                        .allowsHitTesting(!isRitualBlockingWorkspace)
+                        .accessibilityHidden(isRitualBlockingWorkspace)
+                    }
+                }
 
                 if screen == .library, !projects.isEmpty {
                     CreateProjectButton(createProject: createProject)
                         .padding(.trailing, 22)
-                        .padding(.bottom, 28)
+                        .padding(.bottom, nowPlaying == nil ? 28 : 118)
                         .transition(.scale.combined(with: .opacity))
                         .allowsHitTesting(!isRitualBlockingWorkspace)
                         .accessibilityHidden(isRitualBlockingWorkspace)
-                }
-
-                if let nowPlaying, !songContainerOpen {
-                    MiniPlayer(
-                        project: selectedProject,
-                        track: nowPlaying,
-                        markers: nowPlaying.markers,
-                        playbackRuntime: playbackRuntime,
-                        heroNamespace: heroNamespace,
-                        heroMotionEnabled: heroMotionEnabled,
-                        canPlayPrevious: canPlayPrevious,
-                        canPlayNext: canPlayNext,
-                        openSongContainer: openSongContainer,
-                        togglePlayback: togglePlayback,
-                        playPrevious: handlePreviousTransportTap,
-                        playNext: playNextTrack,
-                        stopPlayback: stopPlayback
-                    )
-                    .padding(.horizontal, 18)
-                    .padding(.bottom, Self.miniPlayerBottomPadding)
-                    .zIndex(45)
-                    .transition(.move(edge: .bottom).combined(with: .opacity))
-                    .allowsHitTesting(!isRitualBlockingWorkspace)
-                    .accessibilityHidden(isRitualBlockingWorkspace)
                 }
 
                 if songContainerOpen {
@@ -353,7 +353,7 @@ struct MusicWorkspaceView: View {
                 }
 
                 DynamicSlotButton(
-                    isVisible: slotReady || songContainerOpen,
+                    isVisible: (slotReady || songContainerOpen) && !isSlotChromeSuppressed,
                     isReady: slotReady,
                     isArmed: slotArmed,
                     pull: slotPull,
@@ -903,7 +903,7 @@ struct MusicWorkspaceView: View {
             case .audio:
                 showToast("Import failed - download it in Files first")
             case .projectCover:
-                showToast("Cover failed - choose a local image")
+                showToast("Cover failed - choose a local image or video")
             case .animatedArtwork, .attachment:
                 showToast("Attachment failed - download it in Files first")
             }

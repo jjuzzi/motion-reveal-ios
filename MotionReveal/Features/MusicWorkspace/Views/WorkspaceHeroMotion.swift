@@ -1,10 +1,6 @@
 import SwiftUI
 
 enum WorkspaceHeroMotion {
-    static func projectArtworkID(_ projectID: UUID) -> String {
-        "project-artwork-\(projectID.uuidString)"
-    }
-
     static func nowPlayingArtworkID(_ trackID: UUID) -> String {
         "now-playing-artwork-\(trackID.uuidString)"
     }

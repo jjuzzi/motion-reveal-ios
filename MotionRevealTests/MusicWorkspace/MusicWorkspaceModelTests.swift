@@ -849,6 +849,72 @@ final class MusicWorkspaceModelTests: XCTestCase {
 
         XCTAssertEqual(storedProject.coverMotionArtwork, artwork)
         XCTAssertEqual(storedProject.displayedCoverMotionArtwork, artwork)
+        XCTAssertEqual(storedProject.displayedCoverMotionArtwork(for: secondTrack), artwork)
+    }
+
+    func testExplicitProjectCoverMotionArtworkOverridesTrackArtwork() {
+        let trackArtwork = MotionArtwork(
+            localFileName: "track-motion-artwork.mov",
+            sourceFileName: "track-loop.mov",
+            variant: .square
+        )
+        let projectArtwork = MotionArtwork(
+            localFileName: "project-motion-artwork.mov",
+            sourceFileName: "project-loop.mov",
+            variant: .square
+        )
+        let track = MusicTrack(
+            id: UUID(),
+            title: "Hook",
+            date: "May 24",
+            duration: "1:00",
+            animatedArtwork: trackArtwork
+        )
+        let project = makeProject(title: "Project", tracks: [track])
+        let storedProject = MusicProject(
+            id: project.id,
+            title: project.title,
+            creator: project.creator,
+            trackCount: project.trackCount,
+            runtime: project.runtime,
+            sleeve: project.sleeve,
+            coverMotionArtwork: projectArtwork,
+            coverMotionArtworkIsExplicit: true,
+            state: project.state,
+            tracks: project.tracks
+        )
+
+        XCTAssertEqual(storedProject.displayedCoverMotionArtwork(for: track), projectArtwork)
+    }
+
+    func testExplicitStillProjectCoverSuppressesLegacyTrackArtwork() {
+        let trackArtwork = MotionArtwork(
+            localFileName: "track-motion-artwork.mov",
+            sourceFileName: "track-loop.mov",
+            variant: .square
+        )
+        let track = MusicTrack(
+            id: UUID(),
+            title: "Hook",
+            date: "May 24",
+            duration: "1:00",
+            animatedArtwork: trackArtwork
+        )
+        let project = makeProject(title: "Project", tracks: [track])
+        let storedProject = MusicProject(
+            id: project.id,
+            title: project.title,
+            creator: project.creator,
+            trackCount: project.trackCount,
+            runtime: project.runtime,
+            sleeve: project.sleeve,
+            coverMotionArtwork: nil,
+            coverMotionArtworkIsExplicit: true,
+            state: project.state,
+            tracks: project.tracks
+        )
+
+        XCTAssertNil(storedProject.displayedCoverMotionArtwork(for: track))
     }
 
     func testProjectCoverMotionArtworkFallsBackToLegacyTrackArtworkWhenUnset() {
@@ -869,6 +935,7 @@ final class MusicWorkspaceModelTests: XCTestCase {
 
         XCTAssertNil(project.coverMotionArtwork)
         XCTAssertEqual(project.displayedCoverMotionArtwork, artwork)
+        XCTAssertEqual(project.displayedCoverMotionArtwork(for: secondTrack), artwork)
     }
 
     func testMotionArtworkPlaybackIdentityChangesWhenFileOrVariantChanges() {

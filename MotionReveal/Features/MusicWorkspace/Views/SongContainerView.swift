@@ -178,7 +178,7 @@ private struct SongContainerHeroPanel: View {
                     .opacity(0.34)
                     .offset(y: 10)
 
-                MotionSleeveArtworkView(artwork: project.sleeve, motionArtwork: track.animatedArtwork ?? project.displayedCoverMotionArtwork)
+                MotionSleeveArtworkView(artwork: project.sleeve, motionArtwork: project.displayedCoverMotionArtwork(for: track))
                     .frame(width: SongContainerLayoutMetrics.heroArtworkSize, height: SongContainerLayoutMetrics.heroArtworkSize)
                     .workspaceHeroMatched(
                         id: WorkspaceHeroMotion.nowPlayingArtworkID(track.id),

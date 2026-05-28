@@ -174,107 +174,115 @@ struct WaveformPanel: View {
     let isMarkerEditorPresented: Bool
     let markerEditorCooldownToken: Int
     @Environment(\.accessibilityDifferentiateWithoutColor) private var differentiateWithoutColor
+    @Environment(\.accessibilityReduceMotion) private var reduceMotion
     @State private var pressTask: Task<Void, Never>?
     @State private var pressToken = UUID()
     @State private var gestureState = WaveformGestureState()
     @State private var scrubReleaseTask: Task<Void, Never>?
+    @State private var progressAnchorElapsed: TimeInterval = 0
+    @State private var progressAnchorDate = Date()
     private let horizontalInset = WaveformVisualMetrics.horizontalInset
     private let barSpacing = WaveformVisualMetrics.barSpacing
-    private var displayedFraction: Double {
-        gestureState.scrubFraction ?? progress.fraction
-    }
-    private var displayedElapsedLabel: String {
-        WaveformScrubMetrics.displayedElapsedLabel(for: progress, scrubFraction: gestureState.scrubFraction)
+
+    private var timelinePaused: Bool {
+        reduceMotion || !progress.isPlaying || gestureState.isPreviewingScrub
     }
 
     var body: some View {
         GeometryReader { proxy in
             let trackRect = waveformTrackRect(in: proxy.size)
 
-            ZStack(alignment: .bottomLeading) {
-                Rectangle()
-                    .fill(Color.clear)
-                    .contentShape(Rectangle())
-                    .frame(width: trackRect.width, height: trackRect.height)
-                    .position(x: trackRect.midX, y: trackRect.midY)
-                    .gesture(
-                        DragGesture(minimumDistance: 0)
-                            .onChanged { value in
-                                handleWaveformDragChanged(value, trackRect: trackRect)
-                            }
-                            .onEnded { value in
-                                handleWaveformDragEnded(value, trackRect: trackRect)
-                            }
+            TimelineView(.animation(minimumInterval: 1.0 / 60.0, paused: timelinePaused)) { timeline in
+                let liveFraction = displayedFraction(at: timeline.date)
+                let elapsedLabel = displayedElapsedLabel(at: liveFraction)
+
+                ZStack(alignment: .bottomLeading) {
+                    Rectangle()
+                        .fill(Color.clear)
+                        .contentShape(Rectangle())
+                        .frame(width: trackRect.width, height: trackRect.height)
+                        .position(x: trackRect.midX, y: trackRect.midY)
+                        .gesture(
+                            DragGesture(minimumDistance: 0)
+                                .onChanged { value in
+                                    handleWaveformDragChanged(value, trackRect: trackRect)
+                                }
+                                .onEnded { value in
+                                    handleWaveformDragEnded(value, trackRect: trackRect)
+                                }
+                        )
+
+                    WaveformCanvasLayer(
+                        trackRect: trackRect,
+                        barSpacing: barSpacing,
+                        displayedFraction: liveFraction,
+                        isPlaying: progress.isPlaying,
+                        reduceMotion: reduceMotion,
+                        animationPhase: timeline.date.timeIntervalSinceReferenceDate
                     )
+                    .frame(width: proxy.size.width, height: proxy.size.height)
+                    .allowsHitTesting(false)
 
-                WaveformCanvasLayer(
-                    trackRect: trackRect,
-                    barSpacing: barSpacing,
-                    displayedFraction: displayedFraction
-                )
-                .equatable()
-                .frame(width: proxy.size.width, height: proxy.size.height)
-                .allowsHitTesting(false)
+                    ForEach(markers) { marker in
+                        let markerLineWidth = WaveformVisualMetrics.barWidth(in: trackRect.width)
+                        Button {
+                            withAnimation(.spring(response: 0.32, dampingFraction: 0.86)) {
+                                selectedMarker = marker
+                            }
+                            seekPlayback(Double(marker.position))
+                        } label: {
+                            ZStack {
+                                Color.clear
+                                    .frame(width: MarkerTouchMetrics.waveformMarkerHitWidth, height: 112)
 
-                ForEach(markers) { marker in
-                    let markerLineWidth = WaveformVisualMetrics.barWidth(in: trackRect.width)
-                    Button {
-                        withAnimation(.spring(response: 0.32, dampingFraction: 0.86)) {
-                            selectedMarker = marker
-                        }
-                        seekPlayback(Double(marker.position))
-                    } label: {
-                        ZStack {
-                            Color.clear
-                                .frame(width: MarkerTouchMetrics.waveformMarkerHitWidth, height: 112)
+                                Capsule()
+                                    .fill(marker.color.opacity(marker.isResolved ? 0.38 : selectedMarker?.id == marker.id ? 0.94 : 0.72))
+                                    .frame(width: markerLineWidth, height: max(24, 82 * marker.height))
+                                    .shadow(color: marker.color.opacity(selectedMarker?.id == marker.id ? 0.26 : 0.12), radius: 5, x: 0, y: 0)
 
-                            Capsule()
-                                .fill(marker.color.opacity(marker.isResolved ? 0.38 : selectedMarker?.id == marker.id ? 0.94 : 0.72))
-                                .frame(width: markerLineWidth, height: max(24, 82 * marker.height))
-                                .shadow(color: marker.color.opacity(selectedMarker?.id == marker.id ? 0.26 : 0.12), radius: 5, x: 0, y: 0)
-
-                            if differentiateWithoutColor {
-                                Image(systemName: marker.colorToken.symbolName)
-                                    .font(.system(size: 9, weight: .black))
-                                    .foregroundStyle(marker.color)
-                                    .frame(width: 18, height: 18)
-                                    .background(Color.black.opacity(0.54), in: Circle())
-                                    .offset(y: -56)
+                                if differentiateWithoutColor {
+                                    Image(systemName: marker.colorToken.symbolName)
+                                        .font(.system(size: 9, weight: .black))
+                                        .foregroundStyle(marker.color)
+                                        .frame(width: 18, height: 18)
+                                        .background(Color.black.opacity(0.54), in: Circle())
+                                        .offset(y: -56)
+                                }
                             }
                         }
+                        .buttonStyle(.plain)
+                        .position(x: waveformX(for: Double(marker.position), in: trackRect), y: trackRect.midY)
+                        .accessibilityLabel("Jump to \(marker.accessibilitySummary)")
                     }
-                    .buttonStyle(.plain)
-                    .position(x: waveformX(for: Double(marker.position), in: trackRect), y: trackRect.midY)
-                    .accessibilityLabel("Jump to \(marker.accessibilitySummary)")
-                }
 
-                if let selectedMarker, !isMarkerEditorPresented {
-                    let popoverX = min(
-                        max(waveformX(for: Double(selectedMarker.position), in: trackRect), 104),
-                        proxy.size.width - 104
-                    )
-                    Button {
-                        editMarker(selectedMarker)
-                    } label: {
-                        MarkerNotePopover(marker: selectedMarker)
+                    if let selectedMarker, !isMarkerEditorPresented {
+                        let popoverX = min(
+                            max(waveformX(for: Double(selectedMarker.position), in: trackRect), 104),
+                            proxy.size.width - 104
+                        )
+                        Button {
+                            editMarker(selectedMarker)
+                        } label: {
+                            MarkerNotePopover(marker: selectedMarker)
+                        }
+                        .buttonStyle(.plain)
+                        .accessibilityLabel(selectedMarker.note.isEmpty ? "Add note to marker at \(selectedMarker.time)" : "Edit marker note at \(selectedMarker.time)")
+                        .accessibilityIdentifier("marker-note-popover")
+                        .position(x: popoverX, y: 36)
+                        .transition(.scale.combined(with: .opacity))
+                        .zIndex(5)
                     }
-                    .buttonStyle(.plain)
-                    .accessibilityLabel(selectedMarker.note.isEmpty ? "Add note to marker at \(selectedMarker.time)" : "Edit marker note at \(selectedMarker.time)")
-                    .accessibilityIdentifier("marker-note-popover")
-                    .position(x: popoverX, y: 36)
-                    .transition(.scale.combined(with: .opacity))
-                    .zIndex(5)
-                }
 
-                HStack {
-                    Text(displayedElapsedLabel)
-                    Spacer()
-                    Text(progress.durationLabel)
+                    HStack {
+                        Text(elapsedLabel)
+                        Spacer()
+                        Text(progress.durationLabel)
+                    }
+                    .font(.footnote.weight(.bold))
+                    .foregroundStyle(Color.studioMuted)
+                    .padding(.horizontal, horizontalInset)
+                    .padding(.bottom, 2)
                 }
-                .font(.footnote.weight(.bold))
-                .foregroundStyle(Color.studioMuted)
-                .padding(.horizontal, horizontalInset)
-                .padding(.bottom, 2)
             }
             .accessibilityElement(children: .contain)
             .accessibilityLabel("Waveform scrubber")
@@ -299,6 +307,12 @@ struct WaveformPanel: View {
             if abs(scrubFraction - fraction) < 0.004 {
                 clearScrubFraction()
             }
+        }
+        .onAppear {
+            resetProgressAnchor(to: progress)
+        }
+        .onChange(of: progress) { _, newProgress in
+            resetProgressAnchor(to: newProgress)
         }
         .onDisappear {
             scrubReleaseTask?.cancel()
@@ -393,6 +407,36 @@ struct WaveformPanel: View {
         WaveformScrubMetrics.fraction(for: locationX - trackRect.minX, width: trackRect.width)
     }
 
+    private func displayedFraction(at date: Date) -> Double {
+        if let scrubFraction = gestureState.scrubFraction {
+            return scrubFraction
+        }
+
+        guard progress.isPlaying, !reduceMotion, progress.duration > 0 else {
+            return progress.fraction
+        }
+
+        let elapsed = min(progress.duration, progressAnchorElapsed + max(0, date.timeIntervalSince(progressAnchorDate)))
+        return min(max(elapsed / progress.duration, 0), 1)
+    }
+
+    private func displayedElapsedLabel(at fraction: Double) -> String {
+        if gestureState.scrubFraction != nil {
+            return progress.timeLabel(atFraction: fraction)
+        }
+
+        guard progress.isPlaying, !reduceMotion else {
+            return progress.elapsedLabel
+        }
+
+        return progress.timeLabel(atFraction: fraction)
+    }
+
+    private func resetProgressAnchor(to progress: PlaybackProgress) {
+        progressAnchorElapsed = progress.elapsed
+        progressAnchorDate = Date()
+    }
+
     private func setScrubFraction(_ fraction: Double) {
         var transaction = Transaction()
         transaction.disablesAnimations = true
@@ -467,10 +511,13 @@ struct WaveformPanel: View {
     }
 }
 
-private struct WaveformCanvasLayer: View, Equatable {
+private struct WaveformCanvasLayer: View {
     let trackRect: CGRect
     let barSpacing: CGFloat
     let displayedFraction: Double
+    let isPlaying: Bool
+    let reduceMotion: Bool
+    let animationPhase: TimeInterval
     private static let bars = [CGFloat].waveformBars
 
     var body: some View {
@@ -478,39 +525,93 @@ private struct WaveformCanvasLayer: View, Equatable {
             let bars = Self.bars
             let barWidth = WaveformVisualMetrics.barWidth(in: trackRect.width)
             let playedThreshold = CGFloat(min(max(displayedFraction, 0), 1))
+            let phase = CGFloat(animationPhase)
+            let bedHeight = min(trackRect.height * 0.64, WaveformVisualMetrics.maxBarHeight + 30)
+            let bedRect = CGRect(
+                x: trackRect.minX - 10,
+                y: trackRect.midY - bedHeight / 2,
+                width: trackRect.width + 20,
+                height: bedHeight
+            )
+            let bedPath = Path(roundedRect: bedRect, cornerRadius: bedHeight / 2)
+
+            context.fill(bedPath, with: .color(Color.black.opacity(0.17)))
+            context.stroke(bedPath, with: .color(Color.white.opacity(0.045)), lineWidth: 1)
+
+            var activeGlowPath = Path()
 
             for (index, height) in bars.enumerated() {
                 let barFraction = CGFloat(index) / CGFloat(max(bars.count - 1, 1))
-                let barHeight = max(
-                    WaveformVisualMetrics.minBarHeight,
-                    WaveformVisualMetrics.maxBarHeight * height
+                let distanceFromPlayhead = abs(barFraction - playedThreshold)
+                let activeFalloff = Self.activeFalloff(distance: distanceFromPlayhead)
+                let pulse = reduceMotion || !isPlaying ? 0 : sin(phase * 4.8 + CGFloat(index) * 0.42)
+                let liveLift = activeFalloff * (0.12 + 0.035 * pulse)
+                let barHeight = min(
+                    WaveformVisualMetrics.maxBarHeight + 8,
+                    max(
+                        WaveformVisualMetrics.minBarHeight,
+                        WaveformVisualMetrics.maxBarHeight * height * (1 + liveLift)
+                    )
                 )
                 let x = trackRect.minX + CGFloat(index) * (barWidth + barSpacing)
                 let y = trackRect.midY - barHeight / 2
                 let barRect = CGRect(x: x, y: y, width: barWidth, height: barHeight)
-                let barColor = Color.studioText.opacity(barFraction <= playedThreshold ? 0.68 : 0.22)
-
-                context.fill(
-                    Path(roundedRect: barRect, cornerRadius: barWidth / 2),
-                    with: .color(barColor)
+                let barPath = Path(roundedRect: barRect, cornerRadius: barWidth / 2)
+                let barColor = Self.barColor(
+                    barFraction: barFraction,
+                    playedThreshold: playedThreshold,
+                    activeFalloff: activeFalloff
                 )
+
+                if activeFalloff > 0.05 {
+                    activeGlowPath.addPath(barPath)
+                }
+
+                context.fill(barPath, with: .color(barColor))
+            }
+
+            context.drawLayer { layer in
+                layer.addFilter(.shadow(color: Color.studioGold.opacity(0.22), radius: 6, x: 0, y: 0))
+                layer.fill(activeGlowPath, with: .color(Color.white.opacity(0.24)))
             }
 
             let playheadX = trackRect.minX + trackRect.width * playedThreshold
             let playheadRect = CGRect(
-                x: playheadX - WaveformVisualMetrics.playheadWidth / 2,
+                x: playheadX - WaveformVisualMetrics.playheadWidth,
                 y: trackRect.midY - WaveformVisualMetrics.playheadHeight / 2,
-                width: WaveformVisualMetrics.playheadWidth,
+                width: WaveformVisualMetrics.playheadWidth * 2,
                 height: WaveformVisualMetrics.playheadHeight
             )
             context.drawLayer { layer in
-                layer.addFilter(.shadow(color: Color.studioGold.opacity(0.24), radius: 4, x: 0, y: 0))
+                layer.addFilter(.shadow(color: Color.studioGold.opacity(0.26), radius: 5, x: 0, y: 0))
                 layer.fill(
-                    Path(roundedRect: playheadRect, cornerRadius: 1),
-                    with: .color(Color.studioGold)
+                    Path(roundedRect: playheadRect, cornerRadius: WaveformVisualMetrics.playheadWidth),
+                    with: .color(Color.white.opacity(0.86))
                 )
             }
         }
+    }
+
+    private static func activeFalloff(distance: CGFloat) -> CGFloat {
+        let radius: CGFloat = 0.080
+        let normalized = max(0, 1 - distance / radius)
+        return normalized * normalized
+    }
+
+    private static func barColor(
+        barFraction: CGFloat,
+        playedThreshold: CGFloat,
+        activeFalloff: CGFloat
+    ) -> Color {
+        if activeFalloff > 0.48 {
+            return Color.white.opacity(0.58 + Double(activeFalloff) * 0.28)
+        }
+
+        if barFraction <= playedThreshold {
+            return Color.studioGold.opacity(0.34 + Double(activeFalloff) * 0.34)
+        }
+
+        return Color.studioText.opacity(0.16 + Double(activeFalloff) * 0.22)
     }
 }
 
