@@ -39,7 +39,9 @@ jobs:
             -destination 'generic/platform=iOS Simulator' \
             -derivedDataPath DerivedDataCI \
             build \
-            CODE_SIGNING_ALLOWED=NO
+            CODE_SIGNING_ALLOWED=NO \
+            SWIFT_ENABLE_BATCH_MODE=NO \
+            SWIFT_COMPILATION_MODE=singlefile
 
       - name: Skip app build until app project is committed
         if: hashFiles('project.yml') == ''
