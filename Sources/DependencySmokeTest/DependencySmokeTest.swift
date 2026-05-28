@@ -10,7 +10,7 @@ import RiveRuntime
 
 public enum DependencySmokeTest {
     public static let configuredPackages = [
-        "RiveRuntime",
-        "Lottie"
+        "Lottie",
+        "RiveRuntime"
     ]
 }

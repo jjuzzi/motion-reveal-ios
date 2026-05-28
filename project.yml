@@ -1,0 +1,155 @@
+name: MotionReveal
+options:
+  bundleIdPrefix: com.jjuzzi
+  deploymentTarget:
+    iOS: "17.0"
+  groupSortPosition: top
+  generateEmptyDirectories: true
+packages:
+  lottie-spm:
+    url: https://github.com/airbnb/lottie-spm.git
+    from: 4.6.0
+  rive-ios:
+    url: https://github.com/rive-app/rive-ios.git
+    from: 6.20.5
+  ShaderKit:
+    url: https://github.com/jamesrochabrun/ShaderKit.git
+    from: 1.2.4
+  Inferno:
+    url: https://github.com/twostraws/Inferno.git
+    revision: a40c7a0bdec03aae1bd0b96c41d6a75451bafd2c
+  Motion:
+    url: https://github.com/b3ll/Motion.git
+    from: 0.1.5
+settings:
+  base:
+    SWIFT_VERSION: "6.0"
+    CURRENT_PROJECT_VERSION: 33
+    MARKETING_VERSION: 0.1.1
+    SUPPORTED_PLATFORMS: "iphoneos iphonesimulator"
+    SUPPORTS_MACCATALYST: NO
+    SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD: NO
+targets:
+  MotionReveal:
+    type: application
+    platform: iOS
+    supportedDestinations:
+      - iOS
+      - iOS Simulator
+    deploymentTarget: "17.0"
+    sources:
+      - path: MotionReveal
+    dependencies:
+      - target: MotionRevealLiveActivity
+        embed: true
+      - package: lottie-spm
+        product: Lottie
+      - package: rive-ios
+        product: RiveRuntime
+      - package: ShaderKit
+        product: ShaderKit
+      - package: ShaderKit
+        product: ShaderKitUI
+      - package: Inferno
+        product: Inferno
+      - package: Motion
+        product: Motion
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.jjuzzi.motionreveal
+        PRODUCT_NAME: MotionReveal
+        PRODUCT_MODULE_NAME: MotionReveal
+        DEVELOPMENT_TEAM: 2M778W8LTC
+        CODE_SIGN_STYLE: Automatic
+        SUPPORTED_PLATFORMS: "iphoneos iphonesimulator"
+        SUPPORTS_MACCATALYST: NO
+        SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD: NO
+        GENERATE_INFOPLIST_FILE: NO
+        INFOPLIST_FILE: MotionReveal/Info.plist
+        CODE_SIGN_ENTITLEMENTS: MotionReveal/MotionReveal.entitlements
+        ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
+        ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME: AccentColor
+        DEVELOPMENT_ASSET_PATHS: ""
+        ENABLE_PREVIEWS: YES
+        TARGETED_DEVICE_FAMILY: 1
+  MotionRevealLiveActivity:
+    type: app-extension
+    platform: iOS
+    supportedDestinations:
+      - iOS
+      - iOS Simulator
+    deploymentTarget: "17.0"
+    sources:
+      - path: MotionRevealLiveActivity
+      - path: MotionReveal/Support/NowPlayingActivityAttributes.swift
+      - path: MotionReveal/Support/MotionRevealDeepLink.swift
+      - path: MotionReveal/App/MotionRevealIntents.swift
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.jjuzzi.motionreveal.MotionRevealLiveActivity
+        PRODUCT_NAME: MotionRevealLiveActivity
+        PRODUCT_MODULE_NAME: MotionRevealLiveActivity
+        DEVELOPMENT_TEAM: 2M778W8LTC
+        CODE_SIGN_STYLE: Automatic
+        SUPPORTED_PLATFORMS: "iphoneos iphonesimulator"
+        SUPPORTS_MACCATALYST: NO
+        SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD: NO
+        INFOPLIST_FILE: MotionRevealLiveActivity/Info.plist
+        SKIP_INSTALL: YES
+        TARGETED_DEVICE_FAMILY: 1
+  MotionRevealTests:
+    type: bundle.unit-test
+    platform: iOS
+    supportedDestinations:
+      - iOS
+      - iOS Simulator
+    deploymentTarget: "17.0"
+    sources:
+      - path: MotionRevealTests
+    dependencies:
+      - target: MotionReveal
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.jjuzzi.motionreveal.tests
+        SUPPORTED_PLATFORMS: "iphoneos iphonesimulator"
+        SUPPORTS_MACCATALYST: NO
+        SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD: NO
+        GENERATE_INFOPLIST_FILE: YES
+  MotionRevealUITests:
+    type: bundle.ui-testing
+    platform: iOS
+    supportedDestinations:
+      - iOS
+      - iOS Simulator
+    deploymentTarget: "17.0"
+    sources:
+      - path: MotionRevealUITests
+    dependencies:
+      - target: MotionReveal
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.jjuzzi.motionreveal.uitests
+        SUPPORTED_PLATFORMS: "iphoneos iphonesimulator"
+        SUPPORTS_MACCATALYST: NO
+        SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD: NO
+        GENERATE_INFOPLIST_FILE: YES
+schemes:
+  MotionReveal:
+    build:
+      targets:
+        MotionReveal: all
+        MotionRevealTests: [test]
+        MotionRevealUITests: [test]
+    run:
+      config: Debug
+    test:
+      config: Debug
+      targets:
+        - MotionRevealTests
+        - MotionRevealUITests
+    profile:
+      config: Release
+    analyze:
+      config: Debug
+    archive:
+      config: Release

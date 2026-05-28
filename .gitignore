@@ -1,5 +1,7 @@
 # Xcode
 DerivedData/
+DerivedDataMCP/
+build/
 *.xcuserstate
 *.xcworkspace/xcuserdata/
 *.xcodeproj/xcuserdata/
@@ -10,8 +12,16 @@ DerivedData/
 .build/
 .swiftpm/
 
+# Node/Remotion prototypes
+node_modules/
+.cache/
+
 # macOS
 .DS_Store
+
+# Local agent/editor state
+.omc/
+.vscode/settings.json
 
 # Local secrets and private assets
 .env
@@ -20,6 +30,8 @@ Secrets.xcconfig
 PrivateAssets/
 *.riv
 *.lottie
+!MotionReveal/Resources/Rive/
+!MotionReveal/Resources/Rive/playdate_disc_intake.riv
 
 # Keep generated dependency pins when intentionally committed.
 !Package.resolved

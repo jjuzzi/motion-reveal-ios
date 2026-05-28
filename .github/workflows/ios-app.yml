@@ -1,0 +1,50 @@
+name: iOS App
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    name: Generate and build app
+    runs-on: macos-latest
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v6
+
+      - name: Show toolchain
+        run: |
+          xcodebuild -version
+          swift --version
+
+      - name: Install XcodeGen
+        if: hashFiles('project.yml') != ''
+        run: brew install xcodegen
+
+      - name: Generate Xcode project
+        if: hashFiles('project.yml') != ''
+        run: xcodegen generate
+
+      - name: Build app for simulator
+        if: hashFiles('project.yml') != ''
+        run: |
+          set -o pipefail
+          xcodebuild \
+            -project MotionReveal.xcodeproj \
+            -scheme MotionReveal \
+            -configuration Debug \
+            -destination 'generic/platform=iOS Simulator' \
+            -derivedDataPath DerivedDataCI \
+            build \
+            CODE_SIGNING_ALLOWED=NO \
+            ARCHS=arm64 \
+            SWIFT_ENABLE_BATCH_MODE=NO \
+            SWIFT_COMPILATION_MODE=singlefile
+
+      - name: Skip app build until app project is committed
+        if: hashFiles('project.yml') == ''
+        run: |
+          echo "::notice::project.yml is not committed yet, so the iOS app build is skipped. Commit project.yml and app sources to activate this workflow."
