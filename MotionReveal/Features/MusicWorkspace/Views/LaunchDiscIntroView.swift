@@ -75,40 +75,58 @@ struct LaunchDiscIntroView: View {
     }
 
     private func launchDisc(metrics: LaunchDiscIntroMetrics, progress: Double) -> some View {
-        let dock = smoothStep(progress, from: 0.18, to: 0.52)
-        let retract = smoothStep(progress, from: 0.58, to: 0.94)
-        let vanish = smoothStep(progress, from: 0.86, to: 1)
-        let fallbackVanish = metrics.hasDynamicIsland ? vanish : smoothStep(progress, from: 0.12, to: 0.86)
+        let dock = CGFloat(smoothStep(progress, from: 0.18, to: 0.52))
+        let retract = CGFloat(smoothStep(progress, from: 0.58, to: 0.94))
+        let vanish = CGFloat(smoothStep(progress, from: 0.86, to: 1))
+        let fallbackVanish: CGFloat
+        if metrics.hasDynamicIsland {
+            fallbackVanish = vanish
+        } else {
+            fallbackVanish = CGFloat(smoothStep(progress, from: 0.12, to: 0.86))
+        }
         let dockY = trayDiscCenterY(metrics: metrics, progress: progress)
         let slotY = metrics.slotY + 8
-        let discY = if metrics.hasDynamicIsland {
-            metrics.restingDiscCenterY + (dockY - metrics.restingDiscCenterY) * dock + (slotY - dockY) * retract
+        let discY: CGFloat
+        if metrics.hasDynamicIsland {
+            let dockTravel = (dockY - metrics.restingDiscCenterY) * dock
+            let retractTravel = (slotY - dockY) * retract
+            discY = metrics.restingDiscCenterY + dockTravel + retractTravel
         } else {
-            metrics.restingDiscCenterY
+            discY = metrics.restingDiscCenterY
         }
         let dockedSize = trayDiscDiameter(metrics: metrics)
         let finalSize: CGFloat = 78
-        let discSize = if metrics.hasDynamicIsland {
-            metrics.discSize + (dockedSize - metrics.discSize) * dock + (finalSize - dockedSize) * retract
+        let discSize: CGFloat
+        if metrics.hasDynamicIsland {
+            let dockScale = (dockedSize - metrics.discSize) * dock
+            let retractScale = (finalSize - dockedSize) * retract
+            discSize = metrics.discSize + dockScale + retractScale
         } else {
-            metrics.discSize * (1 - fallbackVanish * 0.08)
+            discSize = metrics.discSize * (1 - fallbackVanish * 0.08)
         }
-        let liftArc = metrics.hasDynamicIsland ? sin(dock * .pi) * -20 : 0
-        let retractCompression = metrics.hasDynamicIsland ? max(0.12, 1 - vanish * 0.82) : 1
+        let liftArc: CGFloat = metrics.hasDynamicIsland ? CGFloat(sin(Double(dock) * Double.pi)) * -20 : 0
+        let retractCompression: CGFloat = metrics.hasDynamicIsland ? max(0.12, 1 - vanish * 0.82) : 1
+        let tiltDegrees = Double(-dock * 4 + retract * 7)
+        let spinDegrees = Double(dock * -5 + retract * 16)
+        let readyScale: CGFloat = isReady ? 1 : 0.82
+        let discOpacity = (isReady ? 1.0 : 0.0) * Double(1 - fallbackVanish)
+        let shadowOpacity = isReady ? 0.20 * Double(1 - fallbackVanish) : 0
+        let shadowRadius = 34 - dock * 12
+        let shadowY = 18 - dock * 12
 
         return BlankCDIridescenceView()
             .frame(width: discSize, height: discSize)
             .scaleEffect(x: 1 - fallbackVanish * 0.18, y: retractCompression)
             .rotation3DEffect(
-                .degrees(-dock * 4 + retract * 7),
+                .degrees(tiltDegrees),
                 axis: (x: 1, y: 0, z: 0),
                 perspective: 0.62
             )
-            .rotationEffect(.degrees(dock * -5 + retract * 16))
-            .scaleEffect(isReady ? 1 : 0.82)
-            .opacity((isReady ? 1.0 : 0.0) * (1 - fallbackVanish))
+            .rotationEffect(.degrees(spinDegrees))
+            .scaleEffect(readyScale)
+            .opacity(discOpacity)
             .brightness(progress > 0 && !reduceMotion ? -0.025 : 0)
-            .shadow(color: Color.studioGold.opacity(isReady ? 0.20 * (1 - fallbackVanish) : 0), radius: 34 - dock * 12, x: 0, y: 18 - dock * 12)
+            .shadow(color: Color.studioGold.opacity(shadowOpacity), radius: shadowRadius, x: 0, y: shadowY)
             .position(x: metrics.centerX, y: discY + liftArc - vanish * 6)
             .allowsHitTesting(false)
     }
