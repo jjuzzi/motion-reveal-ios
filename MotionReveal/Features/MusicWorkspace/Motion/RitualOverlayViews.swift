@@ -252,168 +252,22 @@ private struct SleeveToIslandRitual: View {
 
     var body: some View {
         GeometryReader { proxy in
-            let centerX = proxy.size.width / 2
-            let safeTop = proxy.safeAreaInsets.top
-            let tableY = proxy.size.height * 0.42
-            let islandY = max(28, safeTop - 36)
-            let flight = smooth(discFlight)
-            let reveal = smooth(discPeek)
-            let entry = progress(discFlight, from: 0.76, to: 1)
-            let edgeProfile = progress(discFlight, from: 0.70, to: 0.96)
-            let faceVisibility = 1 - progress(discFlight, from: 0.68, to: 0.96)
-            let finalVanish = progress(discFlight, from: 0.972, to: 1)
-            let sourceRelease = progress(discFlight, from: 0.06, to: 0.42)
-            let insertionSnap = progress(discFlight, from: 0.74, to: 0.93)
-            let hardwareOcclusion = 1 - progress(discFlight, from: 0.86, to: 0.995) * 0.78
-            let sourceBodyPresence = (1 - progress(discFlight, from: 0.18, to: 0.62)) * (1 - discVanish)
-            let sourcePressure = progress(discPeek, from: 0.08, to: 0.82) * (1 - sourceRelease * 0.62)
-            let sourceShadow = (0.78 - sourceRelease * 0.42) * (1 - discVanish)
-            let catchPressure = progress(discFlight, from: 0.78, to: 0.96) * (1 - finalVanish)
-            let slotGrip = progress(discFlight, from: 0.82, to: 0.985) * (1 - finalVanish)
-            let mouthProgress = max(entry, slotGrip * 0.90)
-            let swallowed = progress(discFlight, from: 0.86, to: 1)
-            let fallbackStartX = centerX - 110
-            let fallbackStartY = tableY - 72
-            let sourceStartX = sourceRect.map { $0.minX + $0.width * 0.34 } ?? fallbackStartX
-            let sourceStartY = sourceRect.map { $0.minY + $0.height * 0.58 } ?? fallbackStartY
-            let sourceDiscSize = sourceRect.map { min(max($0.width * 0.60, 104), 126) } ?? 118
-            let startX = sourceStartX
-            let startY = sourceStartY
-            let endX = centerX
-            let endY = islandY
-            let arc = -86 * CGFloat(sin(Double(flight) * Double.pi)) * (1 - entry * 0.70)
-            let drift = CGFloat(sin(Double(flight) * Double.pi * 0.9)) * 6 * (1 - entry * 0.82)
-            let discSpin = Double(8 + flight * 96 + reveal * 8)
-            let discSize = max(22, sourceDiscSize + 4 - edgeProfile * 54 - swallowed * 22 - finalVanish * 30)
-            let discX = startX + (endX - startX) * flight + drift
-            let discY = startY + (endY - startY) * flight + arc - insertionSnap * 34 - swallowed * 32
-            let discOpacity = (0.78 + reveal * 0.22) * (1 - finalVanish * 0.42) * (1 - discVanish * 0.84) * hardwareOcclusion
-            let sourceOcclusionOpacity = 0.76 * (1 - sourceRelease) * (1 - finalVanish) * (1 - discVanish)
-            let lipOpacity = 0.28 * (1 - sourceRelease * 0.82) * (1 - finalVanish) * (1 - discVanish)
-            let liveTilt = deviceTilt.tilt.scaled(faceVisibility: faceVisibility, edgeProfile: edgeProfile)
+            let frame = SleeveToIslandRitualFrame(
+                size: proxy.size,
+                safeAreaInsets: proxy.safeAreaInsets,
+                sourceRect: sourceRect,
+                sleeveLift: sleeveLift,
+                discPeek: discPeek,
+                discFlight: discFlight,
+                discVanish: discVanish
+            )
 
             ZStack {
-                IslandSlotHardware(progress: entry, isFront: false)
-                    .frame(width: 178, height: 68)
-                    .position(x: endX, y: endY + 10)
-                    .opacity((0.24 + entry * 0.36) * (1 - finalVanish * 0.72))
-                    .allowsHitTesting(false)
-
-                DynamicIslandEdgeBeam(isReady: true, isArmed: false, pull: catchPressure * DynamicSlotPullResponse.openThreshold)
-                    .position(x: endX, y: endY + 10)
-                    .opacity((0.18 + entry * 0.72) * (1 - finalVanish * 0.72))
-                    .allowsHitTesting(false)
-
-                DiscPlayerMouth(progress: mouthProgress, bite: slotGrip, layer: .back)
-                    .frame(width: 170, height: 66)
-                    .position(x: endX, y: endY + 10)
-                    .opacity((0.10 + mouthProgress * 0.54) * (1 - finalVanish * 0.74))
-                    .allowsHitTesting(false)
-
-                InsertionHandoffGlow(progress: entry)
-                    .frame(width: 112, height: 74)
-                    .position(x: endX, y: endY + 8)
-                    .opacity(0.18 * catchPressure * (1 - discVanish))
-                    .allowsHitTesting(false)
-
-                SourceSleeveBody(
-                    artwork: artwork,
-                    reveal: reveal,
-                    lift: sleeveLift,
-                    release: sourceRelease,
-                    pressure: sourcePressure,
-                    shimmerTilt: shimmerTilt
-                )
-                .frame(width: sourceDiscSize * 1.08, height: sourceDiscSize * 0.32)
-                .rotationEffect(.degrees(-6 + Double(flight) * 2.2))
-                .position(
-                    x: startX - 2 + flight * 5,
-                    y: startY + sourceDiscSize * 0.52 - flight * 5
-                )
-                .opacity(max(0, sourceBodyPresence) * 0.74)
-                .shadow(color: Color.black.opacity(0.32 * sourceShadow), radius: 18, x: 0, y: 12)
-
-                DiscContactShadow(progress: sourcePressure, release: sourceRelease)
-                    .frame(width: sourceDiscSize * 0.92, height: sourceDiscSize * 0.20)
-                    .rotationEffect(.degrees(-6 + Double(flight) * 2.2))
-                    .position(x: startX - 2 + flight * 5, y: startY + sourceDiscSize * 0.45 - flight * 5)
-                    .opacity(max(0, sourceBodyPresence))
-
-                StudioDisc(faceVisibility: faceVisibility, edgeProfile: edgeProfile)
-                    .frame(width: discSize, height: discSize)
-                    .rotationEffect(.degrees(discSpin))
-                    .rotation3DEffect(
-                        .degrees(-88 * Double(edgeProfile)),
-                        axis: (x: 1, y: 0, z: 0),
-                        anchor: .center,
-                        perspective: 0.72
-                    )
-                    .rotation3DEffect(
-                        .degrees(liveTilt.pitchDegrees),
-                        axis: (x: 1, y: 0, z: 0),
-                        anchor: .center,
-                        perspective: 0.56
-                    )
-                    .rotation3DEffect(
-                        .degrees(liveTilt.rollDegrees),
-                        axis: (x: 0, y: 1, z: 0),
-                        anchor: .center,
-                        perspective: 0.56
-                    )
-                    .scaleEffect(
-                        x: 0.64 + reveal * 0.36 + edgeProfile * 0.10,
-                        y: max(0.14, 0.64 + reveal * 0.36 - edgeProfile * 0.70 - slotGrip * 0.12)
-                    )
-                    .position(
-                        x: discX,
-                        y: discY
-                    )
-                    .opacity(discOpacity)
-                    .shadow(color: Color.studioGold.opacity(0.24 * (1 - finalVanish)), radius: 18, x: 0, y: 0)
-                    .shadow(color: Color.studioBlue.opacity(0.16 * faceVisibility), radius: 22, x: 0, y: 4)
-
-                SourceSleevePocketOccluder(artwork: artwork, reveal: reveal, lift: sleeveLift, shimmerTilt: shimmerTilt)
-                    .frame(width: sourceDiscSize * 0.90, height: sourceDiscSize * 0.13)
-                    .rotationEffect(.degrees(-6 + Double(flight) * 2))
-                    .position(x: startX - 2 + flight * 5, y: startY + sourceDiscSize * 0.49 - flight * 5)
-                    .opacity(max(0, sourceOcclusionOpacity))
-
-                SourceSleeveLip(artwork: artwork, reveal: reveal, lift: sleeveLift, shimmerTilt: shimmerTilt)
-                    .frame(width: 78, height: 6)
-                    .rotationEffect(.degrees(-6 + Double(flight) * 2.6))
-                    .position(x: startX - 2 + flight * 5, y: startY + sourceDiscSize * 0.46 - flight * 5)
-                    .opacity(max(0, lipOpacity))
-
-                DiscSideProfile(progress: edgeProfile)
-                    .frame(width: discSize * (0.90 + edgeProfile * 0.12), height: 3.5 + edgeProfile * 4.0)
-                    .rotationEffect(.degrees(-2 + edgeProfile * 4))
-                    .position(x: discX, y: discY + edgeProfile * 1.5)
-                    .opacity(0.84 * edgeProfile * (1 - finalVanish * 0.18) * (1 - discVanish * 0.68) * hardwareOcclusion)
-                    .shadow(color: Color.studioGold.opacity(0.32 * edgeProfile), radius: 10, x: 0, y: 0)
-
-                DiscSlotOccluder(progress: mouthProgress, bite: slotGrip, grip: slotGrip, vanish: finalVanish)
-                    .frame(width: 168, height: 54)
-                    .position(x: endX, y: endY + 10)
-                    .opacity((0.18 + catchPressure * 0.70) * (1 - finalVanish * 0.74))
-                    .allowsHitTesting(false)
-
-                IslandSlotHardware(progress: entry, isFront: true)
-                    .frame(width: 178, height: 68)
-                    .position(x: endX, y: endY + 10)
-                    .opacity(catchPressure * (1 - finalVanish * 0.82))
-                    .allowsHitTesting(false)
-
-                DiscPlayerMouth(progress: mouthProgress, bite: slotGrip, layer: .front)
-                    .frame(width: 170, height: 66)
-                    .position(x: endX, y: endY + 10)
-                    .opacity((catchPressure * 0.74 + slotGrip * 0.12) * (1 - finalVanish * 0.84))
-                    .allowsHitTesting(false)
-
-                FlightTrail(progress: discFlight)
-                    .stroke(Color.studioGold.opacity(0.07 * flight * (1 - finalVanish * 0.72)), style: StrokeStyle(lineWidth: 0.8, lineCap: .round))
-                    .frame(width: 220, height: 220)
-                    .position(x: centerX - 20, y: tableY - 92)
-                    .blur(radius: 1.5)
+                islandBackLayer(frame)
+                sourceLayer(frame)
+                discLayer(frame)
+                islandFrontLayer(frame)
+                flightTrail(frame)
             }
             .frame(width: proxy.size.width, height: proxy.size.height)
             .task {
@@ -434,6 +288,141 @@ private struct SleeveToIslandRitual: View {
             }
         }
         .ignoresSafeArea()
+    }
+
+    @ViewBuilder
+    private func islandBackLayer(_ frame: SleeveToIslandRitualFrame) -> some View {
+        IslandSlotHardware(progress: frame.entry, isFront: false)
+            .frame(width: 178, height: 68)
+            .position(x: frame.endX, y: frame.endY + 10)
+            .opacity((0.24 + frame.entry * 0.36) * (1 - frame.finalVanish * 0.72))
+            .allowsHitTesting(false)
+
+        DynamicIslandEdgeBeam(isReady: true, isArmed: false, pull: frame.catchPressure * DynamicSlotPullResponse.openThreshold)
+            .position(x: frame.endX, y: frame.endY + 10)
+            .opacity((0.18 + frame.entry * 0.72) * (1 - frame.finalVanish * 0.72))
+            .allowsHitTesting(false)
+
+        DiscPlayerMouth(progress: frame.mouthProgress, bite: frame.slotGrip, layer: .back)
+            .frame(width: 170, height: 66)
+            .position(x: frame.endX, y: frame.endY + 10)
+            .opacity((0.10 + frame.mouthProgress * 0.54) * (1 - frame.finalVanish * 0.74))
+            .allowsHitTesting(false)
+
+        InsertionHandoffGlow(progress: frame.entry)
+            .frame(width: 112, height: 74)
+            .position(x: frame.endX, y: frame.endY + 8)
+            .opacity(0.18 * frame.catchPressure * (1 - discVanish))
+            .allowsHitTesting(false)
+    }
+
+    @ViewBuilder
+    private func sourceLayer(_ frame: SleeveToIslandRitualFrame) -> some View {
+        SourceSleeveBody(
+            artwork: artwork,
+            reveal: frame.reveal,
+            lift: sleeveLift,
+            release: frame.sourceRelease,
+            pressure: frame.sourcePressure,
+            shimmerTilt: shimmerTilt
+        )
+        .frame(width: frame.sourceDiscSize * 1.08, height: frame.sourceDiscSize * 0.32)
+        .rotationEffect(.degrees(frame.sourceBodyRotation))
+        .position(x: frame.sourceX, y: frame.sourceBodyY)
+        .opacity(max(0, frame.sourceBodyPresence) * 0.74)
+        .shadow(color: Color.black.opacity(0.32 * frame.sourceShadow), radius: 18, x: 0, y: 12)
+
+        DiscContactShadow(progress: frame.sourcePressure, release: frame.sourceRelease)
+            .frame(width: frame.sourceDiscSize * 0.92, height: frame.sourceDiscSize * 0.20)
+            .rotationEffect(.degrees(frame.sourceBodyRotation))
+            .position(x: frame.sourceX, y: frame.sourceShadowY)
+            .opacity(max(0, frame.sourceBodyPresence))
+
+        SourceSleevePocketOccluder(artwork: artwork, reveal: frame.reveal, lift: sleeveLift, shimmerTilt: shimmerTilt)
+            .frame(width: frame.sourceDiscSize * 0.90, height: frame.sourceDiscSize * 0.13)
+            .rotationEffect(.degrees(frame.sourceOccluderRotation))
+            .position(x: frame.sourceX, y: frame.sourceOccluderY)
+            .opacity(max(0, frame.sourceOcclusionOpacity))
+
+        SourceSleeveLip(artwork: artwork, reveal: frame.reveal, lift: sleeveLift, shimmerTilt: shimmerTilt)
+            .frame(width: 78, height: 6)
+            .rotationEffect(.degrees(frame.sourceLipRotation))
+            .position(x: frame.sourceX, y: frame.sourceLipY)
+            .opacity(max(0, frame.lipOpacity))
+    }
+
+    @ViewBuilder
+    private func discLayer(_ frame: SleeveToIslandRitualFrame) -> some View {
+        let liveTilt = deviceTilt.tilt.scaled(faceVisibility: frame.faceVisibility, edgeProfile: frame.edgeProfile)
+
+        StudioDisc(faceVisibility: frame.faceVisibility, edgeProfile: frame.edgeProfile)
+            .frame(width: frame.discSize, height: frame.discSize)
+            .rotationEffect(.degrees(frame.discSpin))
+            .rotation3DEffect(
+                .degrees(-88 * Double(frame.edgeProfile)),
+                axis: (x: 1, y: 0, z: 0),
+                anchor: .center,
+                perspective: 0.72
+            )
+            .rotation3DEffect(
+                .degrees(liveTilt.pitchDegrees),
+                axis: (x: 1, y: 0, z: 0),
+                anchor: .center,
+                perspective: 0.56
+            )
+            .rotation3DEffect(
+                .degrees(liveTilt.rollDegrees),
+                axis: (x: 0, y: 1, z: 0),
+                anchor: .center,
+                perspective: 0.56
+            )
+            .scaleEffect(
+                x: 0.64 + frame.reveal * 0.36 + frame.edgeProfile * 0.10,
+                y: max(0.14, 0.64 + frame.reveal * 0.36 - frame.edgeProfile * 0.70 - frame.slotGrip * 0.12)
+            )
+            .position(x: frame.discX, y: frame.discY)
+            .opacity(frame.discOpacity)
+            .shadow(color: Color.studioGold.opacity(0.24 * (1 - frame.finalVanish)), radius: 18, x: 0, y: 0)
+            .shadow(color: Color.studioBlue.opacity(0.16 * frame.faceVisibility), radius: 22, x: 0, y: 4)
+
+        DiscSideProfile(progress: frame.edgeProfile)
+            .frame(width: frame.discSize * (0.90 + frame.edgeProfile * 0.12), height: 3.5 + frame.edgeProfile * 4.0)
+            .rotationEffect(.degrees(-2 + frame.edgeProfile * 4))
+            .position(x: frame.discX, y: frame.discY + frame.edgeProfile * 1.5)
+            .opacity(0.84 * frame.edgeProfile * (1 - frame.finalVanish * 0.18) * (1 - discVanish * 0.68) * frame.hardwareOcclusion)
+            .shadow(color: Color.studioGold.opacity(0.32 * frame.edgeProfile), radius: 10, x: 0, y: 0)
+    }
+
+    @ViewBuilder
+    private func islandFrontLayer(_ frame: SleeveToIslandRitualFrame) -> some View {
+        DiscSlotOccluder(progress: frame.mouthProgress, bite: frame.slotGrip, grip: frame.slotGrip, vanish: frame.finalVanish)
+            .frame(width: 168, height: 54)
+            .position(x: frame.endX, y: frame.endY + 10)
+            .opacity((0.18 + frame.catchPressure * 0.70) * (1 - frame.finalVanish * 0.74))
+            .allowsHitTesting(false)
+
+        IslandSlotHardware(progress: frame.entry, isFront: true)
+            .frame(width: 178, height: 68)
+            .position(x: frame.endX, y: frame.endY + 10)
+            .opacity(frame.catchPressure * (1 - frame.finalVanish * 0.82))
+            .allowsHitTesting(false)
+
+        DiscPlayerMouth(progress: frame.mouthProgress, bite: frame.slotGrip, layer: .front)
+            .frame(width: 170, height: 66)
+            .position(x: frame.endX, y: frame.endY + 10)
+            .opacity((frame.catchPressure * 0.74 + frame.slotGrip * 0.12) * (1 - frame.finalVanish * 0.84))
+            .allowsHitTesting(false)
+    }
+
+    private func flightTrail(_ frame: SleeveToIslandRitualFrame) -> some View {
+        FlightTrail(progress: discFlight)
+            .stroke(
+                Color.studioGold.opacity(0.07 * frame.flight * (1 - frame.finalVanish * 0.72)),
+                style: StrokeStyle(lineWidth: 0.8, lineCap: .round)
+            )
+            .frame(width: 220, height: 220)
+            .position(x: frame.centerX - 20, y: frame.tableY - 92)
+            .blur(radius: 1.5)
     }
 
     @MainActor
@@ -482,6 +471,109 @@ private struct SleeveToIslandRitual: View {
     }
 
     private func smooth(_ value: CGFloat) -> CGFloat {
+        let clamped = min(max(value, 0), 1)
+        return clamped * clamped * (3 - 2 * clamped)
+    }
+}
+
+private struct SleeveToIslandRitualFrame {
+    let centerX: CGFloat
+    let tableY: CGFloat
+    let flight: CGFloat
+    let reveal: CGFloat
+    let entry: CGFloat
+    let edgeProfile: CGFloat
+    let faceVisibility: CGFloat
+    let finalVanish: CGFloat
+    let sourceRelease: CGFloat
+    let hardwareOcclusion: CGFloat
+    let sourceBodyPresence: CGFloat
+    let sourcePressure: CGFloat
+    let sourceShadow: CGFloat
+    let catchPressure: CGFloat
+    let slotGrip: CGFloat
+    let mouthProgress: CGFloat
+    let sourceDiscSize: CGFloat
+    let endX: CGFloat
+    let endY: CGFloat
+    let discSpin: Double
+    let discSize: CGFloat
+    let discX: CGFloat
+    let discY: CGFloat
+    let discOpacity: CGFloat
+    let sourceOcclusionOpacity: CGFloat
+    let lipOpacity: CGFloat
+    let sourceX: CGFloat
+    let sourceBodyY: CGFloat
+    let sourceShadowY: CGFloat
+    let sourceOccluderY: CGFloat
+    let sourceLipY: CGFloat
+    let sourceBodyRotation: Double
+    let sourceOccluderRotation: Double
+    let sourceLipRotation: Double
+
+    init(
+        size: CGSize,
+        safeAreaInsets: EdgeInsets,
+        sourceRect: CGRect?,
+        sleeveLift _: CGFloat,
+        discPeek: CGFloat,
+        discFlight: CGFloat,
+        discVanish: CGFloat
+    ) {
+        centerX = size.width / 2
+        tableY = size.height * 0.42
+        endX = centerX
+        endY = max(28, safeAreaInsets.top - 36)
+
+        flight = Self.smooth(discFlight)
+        reveal = Self.smooth(discPeek)
+        entry = Self.progress(discFlight, from: 0.76, to: 1)
+        edgeProfile = Self.progress(discFlight, from: 0.70, to: 0.96)
+        faceVisibility = 1 - Self.progress(discFlight, from: 0.68, to: 0.96)
+        finalVanish = Self.progress(discFlight, from: 0.972, to: 1)
+        sourceRelease = Self.progress(discFlight, from: 0.06, to: 0.42)
+        let insertionSnap = Self.progress(discFlight, from: 0.74, to: 0.93)
+        hardwareOcclusion = 1 - Self.progress(discFlight, from: 0.86, to: 0.995) * 0.78
+        sourceBodyPresence = (1 - Self.progress(discFlight, from: 0.18, to: 0.62)) * (1 - discVanish)
+        sourcePressure = Self.progress(discPeek, from: 0.08, to: 0.82) * (1 - sourceRelease * 0.62)
+        sourceShadow = (0.78 - sourceRelease * 0.42) * (1 - discVanish)
+        catchPressure = Self.progress(discFlight, from: 0.78, to: 0.96) * (1 - finalVanish)
+        slotGrip = Self.progress(discFlight, from: 0.82, to: 0.985) * (1 - finalVanish)
+        mouthProgress = max(entry, slotGrip * 0.90)
+
+        let swallowed = Self.progress(discFlight, from: 0.86, to: 1)
+        let fallbackStartX = centerX - 110
+        let fallbackStartY = tableY - 72
+        let startX = sourceRect.map { $0.minX + $0.width * 0.34 } ?? fallbackStartX
+        let startY = sourceRect.map { $0.minY + $0.height * 0.58 } ?? fallbackStartY
+        sourceDiscSize = sourceRect.map { min(max($0.width * 0.60, 104), 126) } ?? 118
+
+        let arc = -86 * CGFloat(sin(Double(flight) * Double.pi)) * (1 - entry * 0.70)
+        let drift = CGFloat(sin(Double(flight) * Double.pi * 0.9)) * 6 * (1 - entry * 0.82)
+        discSpin = Double(8 + flight * 96 + reveal * 8)
+        discSize = max(22, sourceDiscSize + 4 - edgeProfile * 54 - swallowed * 22 - finalVanish * 30)
+        discX = startX + (endX - startX) * flight + drift
+        discY = startY + (endY - startY) * flight + arc - insertionSnap * 34 - swallowed * 32
+        discOpacity = (0.78 + reveal * 0.22) * (1 - finalVanish * 0.42) * (1 - discVanish * 0.84) * hardwareOcclusion
+        sourceOcclusionOpacity = 0.76 * (1 - sourceRelease) * (1 - finalVanish) * (1 - discVanish)
+        lipOpacity = 0.28 * (1 - sourceRelease * 0.82) * (1 - finalVanish) * (1 - discVanish)
+
+        sourceX = startX - 2 + flight * 5
+        sourceBodyY = startY + sourceDiscSize * 0.52 - flight * 5
+        sourceShadowY = startY + sourceDiscSize * 0.45 - flight * 5
+        sourceOccluderY = startY + sourceDiscSize * 0.49 - flight * 5
+        sourceLipY = startY + sourceDiscSize * 0.46 - flight * 5
+        sourceBodyRotation = -6 + Double(flight) * 2.2
+        sourceOccluderRotation = -6 + Double(flight) * 2
+        sourceLipRotation = -6 + Double(flight) * 2.6
+    }
+
+    private static func progress(_ value: CGFloat, from start: CGFloat, to end: CGFloat) -> CGFloat {
+        smooth((value - start) / (end - start))
+    }
+
+    private static func smooth(_ value: CGFloat) -> CGFloat {
         let clamped = min(max(value, 0), 1)
         return clamped * clamped * (3 - 2 * clamped)
     }
