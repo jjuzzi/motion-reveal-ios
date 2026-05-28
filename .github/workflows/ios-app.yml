@@ -40,6 +40,7 @@ jobs:
             -derivedDataPath DerivedDataCI \
             build \
             CODE_SIGNING_ALLOWED=NO \
+            ARCHS=arm64 \
             SWIFT_ENABLE_BATCH_MODE=NO \
             SWIFT_COMPILATION_MODE=singlefile
 
