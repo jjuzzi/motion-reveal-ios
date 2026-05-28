@@ -387,7 +387,7 @@ private struct SleeveToIslandRitual: View {
 
         DiscSideProfile(progress: frame.edgeProfile)
             .frame(width: frame.discSize * (0.90 + frame.edgeProfile * 0.12), height: 3.5 + frame.edgeProfile * 4.0)
-            .rotationEffect(.degrees(-2 + frame.edgeProfile * 4))
+            .rotationEffect(.degrees(-2 + Double(frame.edgeProfile) * 4))
             .position(x: frame.discX, y: frame.discY + frame.edgeProfile * 1.5)
             .opacity(0.84 * frame.edgeProfile * (1 - frame.finalVanish * 0.18) * (1 - discVanish * 0.68) * frame.hardwareOcclusion)
             .shadow(color: Color.studioGold.opacity(0.32 * frame.edgeProfile), radius: 10, x: 0, y: 0)
