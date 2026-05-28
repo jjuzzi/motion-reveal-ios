@@ -29,12 +29,14 @@ enum NowPlayingInfoPublisher {
             }
         }
 
+#if compiler(>=6.3)
         let motionArtwork = track.animatedArtwork ?? project.displayedCoverMotionArtwork
         if #available(iOS 26.0, *),
            let artwork = motionArtwork,
            let videoURL = libraryStore.animatedArtworkURL(for: artwork) {
             addAnimatedArtwork(artwork, videoURL: videoURL, to: &info)
         }
+#endif
 
         MPNowPlayingInfoCenter.default().nowPlayingInfo = info
     }
@@ -122,6 +124,7 @@ enum NowPlayingInfoPublisher {
         return image
     }
 
+#if compiler(>=6.3)
     @available(iOS 26.0, *)
     private static func addAnimatedArtwork(
         _ artwork: MotionArtwork,
@@ -150,6 +153,7 @@ enum NowPlayingInfoPublisher {
             }
         )
     }
+#endif
 
     private static func previewImage(for videoURL: URL, requestedSize: CGSize) async -> UIImage? {
         previewImageSynchronously(for: videoURL, requestedSize: requestedSize)
