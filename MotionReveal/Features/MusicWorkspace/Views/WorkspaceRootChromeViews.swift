@@ -132,15 +132,19 @@ private struct StudioStar: Identifiable {
 
     static func makeLayer(_ layer: Int) -> [StudioStar] {
         let count = StudioStarfieldPreset.starCount(forLayer: layer)
+        var stars: [StudioStar] = []
+        stars.reserveCapacity(count)
 
-        return (0..<count).map { index in
+        for index in 0..<count {
             var state = UInt64((layer + 1) * 1103515245 + (index + 11) * 2654435761)
             let x = randomUnit(&state)
             let y = randomUnit(&state)
             let seed = randomUnit(&state)
 
-            return StudioStar(id: layer * 1_000 + index, x: CGFloat(x), y: CGFloat(y), seed: seed)
+            stars.append(StudioStar(id: layer * 1_000 + index, x: CGFloat(x), y: CGFloat(y), seed: seed))
         }
+
+        return stars
     }
 
     private static func randomUnit(_ state: inout UInt64) -> Double {
@@ -193,20 +197,12 @@ struct ToastView: View {
 
     @ViewBuilder
     private var toastContent: some View {
-        if #available(iOS 26.0, *) {
-            GlassEffectContainer(spacing: 0) {
-                label
-                    .glassEffect(.regular, in: .capsule)
+        label
+            .background(Color.black.opacity(0.74), in: Capsule())
+            .overlay {
+                Capsule()
+                    .stroke(Color.white.opacity(0.10), lineWidth: 1)
             }
-            .padding(.horizontal, 12)
-        } else {
-            label
-                .background(Color.black.opacity(0.74), in: Capsule())
-                .overlay {
-                    Capsule()
-                        .stroke(Color.white.opacity(0.10), lineWidth: 1)
-                }
-        }
     }
 
     private var label: some View {
