@@ -1,0 +1,455 @@
+# Instincts generated from https://github.com/jjuzzi/motion-reveal-ios
+# Generated: 2026-06-04T16:00:06.159Z
+# Version: 2.0
+# NOTE: This file supplements (does not replace) any existing curated instincts.
+# High-confidence manually curated instincts should be preserved alongside these.
+
+---
+id: motion-reveal-ios-commit-length
+trigger: "when writing a commit message"
+confidence: 0.6
+domain: git
+source: repo-analysis
+source_repo: https://github.com/jjuzzi/motion-reveal-ios
+---
+
+# Motion Reveal Ios Commit Length
+
+## Action
+
+Write moderate-length commit messages (~63 characters)
+
+## Evidence
+
+- Average commit message length: 63 chars
+- Based on 15 commits
+
+---
+id: motion-reveal-ios-naming-files
+trigger: "when creating a new file"
+confidence: 0.8
+domain: code-style
+source: repo-analysis
+source_repo: https://github.com/jjuzzi/motion-reveal-ios
+---
+
+# Motion Reveal Ios Naming Files
+
+## Action
+
+Use PascalCase naming convention
+
+## Evidence
+
+- Analyzed file naming patterns in repository
+- Dominant pattern: PascalCase
+
+---
+id: motion-reveal-ios-import-relative
+trigger: "when importing modules"
+confidence: 0.75
+domain: code-style
+source: repo-analysis
+source_repo: https://github.com/jjuzzi/motion-reveal-ios
+---
+
+# Motion Reveal Ios Import Relative
+
+## Action
+
+Use relative imports for project files
+
+## Evidence
+
+- Import analysis shows relative import pattern
+- Example: import { x } from '../lib/x'
+
+---
+id: motion-reveal-ios-export-style
+trigger: "when exporting from a module"
+confidence: 0.7
+domain: code-style
+source: repo-analysis
+source_repo: https://github.com/jjuzzi/motion-reveal-ios
+---
+
+# Motion Reveal Ios Export Style
+
+## Action
+
+Prefer named exports
+
+## Evidence
+
+- Export pattern analysis
+- Dominant style: named
+
+---
+id: motion-reveal-ios-test-separate
+trigger: "when writing tests"
+confidence: 0.8
+domain: testing
+source: repo-analysis
+source_repo: https://github.com/jjuzzi/motion-reveal-ios
+---
+
+# Motion Reveal Ios Test Separate
+
+## Action
+
+Place tests in the tests/ or __tests__/ directory, mirroring src structure
+
+## Evidence
+
+- Separate test directory pattern detected
+- Tests live in dedicated test folders
+
+---
+id: motion-reveal-ios-workflow-feature-development
+trigger: "when implementing a new feature"
+confidence: 0.9
+domain: workflow
+source: repo-analysis
+source_repo: https://github.com/jjuzzi/motion-reveal-ios
+---
+
+# Motion Reveal Ios Workflow Feature Development
+
+## Action
+
+Follow the feature-development workflow:
+1. Add feature implementation
+2. Add tests for feature
+3. Update documentation
+
+## Evidence
+
+- Workflow detected from commit patterns
+- Frequency: ~12x per month
+- Files: **/*.test.*
+
+---
+id: motion-reveal-ios-workflow-expand-existing-concept-doc
+trigger: "when doing expand existing concept doc"
+confidence: 0.75
+domain: workflow
+source: repo-analysis
+source_repo: https://github.com/jjuzzi/motion-reveal-ios
+---
+
+# Motion Reveal Ios Workflow Expand Existing Concept Doc
+
+## Action
+
+Follow the expand-existing-concept-doc workflow:
+1. Open an existing Docs/*.md file (e.g., UniversalKey.md, Liberator.md).
+2. Add new sections, explanations, or principles based on new insights or discussions.
+3. Commit the changes with a descriptive message referencing the new content.
+
+## Evidence
+
+- Workflow detected from commit patterns
+- Frequency: ~5x per month
+- Files: Docs/UniversalKey.md, Docs/Liberator.md
+
+---
+id: motion-reveal-ios-workflow-add-new-concept-or-mission-doc
+trigger: "when doing add new concept or mission doc"
+confidence: 0.75
+domain: workflow
+source: repo-analysis
+source_repo: https://github.com/jjuzzi/motion-reveal-ios
+---
+
+# Motion Reveal Ios Workflow Add New Concept Or Mission Doc
+
+## Action
+
+Follow the add-new-concept-or-mission-doc workflow:
+1. Create a new Docs/*.md file with a descriptive name (e.g., RoomKey.md, AutonomousMission.md, Mission-MapTheWalls.md).
+2. Write the initial content outlining the new concept or mission.
+3. Commit the new file with a message summarizing the addition.
+
+## Evidence
+
+- Workflow detected from commit patterns
+- Frequency: ~5x per month
+- Files: Docs/RoomKey.md, Docs/AutonomousMission.md, Docs/Mission-Autonomy.md
+
+---
+id: motion-reveal-ios-workflow-update-multiple-concept-docs-in-response-to-new-insight
+trigger: "when doing update multiple concept docs in response to new insight"
+confidence: 0.55
+domain: workflow
+source: repo-analysis
+source_repo: https://github.com/jjuzzi/motion-reveal-ios
+---
+
+# Motion Reveal Ios Workflow Update Multiple Concept Docs In Response To New Insight
+
+## Action
+
+Follow the update-multiple-concept-docs-in-response-to-new-insight workflow:
+1. Identify all Docs/*.md files impacted by the new insight.
+2. Edit each relevant file to add or update sections reflecting the new principle.
+3. Commit all changes together with a message referencing the shared insight.
+
+## Evidence
+
+- Workflow detected from commit patterns
+- Frequency: ~1x per month
+- Files: Docs/UniversalKey.md, Docs/Liberator.md
+
+---
+id: motion-reveal-ios-instinct-file-naming
+trigger: "When creating a new file"
+confidence: 0.9
+domain: code-style
+source: repo-analysis
+source_repo: jjuzzi/motion-reveal-ios
+---
+
+# Motion Reveal Ios Instinct File Naming
+
+## Action
+
+Name the file using PascalCase
+
+## Evidence
+
+- Naming conventions: files = PascalCase
+- Consistent with Docs/UniversalKey.md, Docs/Liberator.md
+
+---
+id: motion-reveal-ios-instinct-function-naming
+trigger: "When defining a new function"
+confidence: 0.9
+domain: code-style
+source: repo-analysis
+source_repo: jjuzzi/motion-reveal-ios
+---
+
+# Motion Reveal Ios Instinct Function Naming
+
+## Action
+
+Name the function using camelCase
+
+## Evidence
+
+- Naming conventions: functions = camelCase
+
+---
+id: motion-reveal-ios-instinct-class-naming
+trigger: "When defining a new class"
+confidence: 0.9
+domain: code-style
+source: repo-analysis
+source_repo: jjuzzi/motion-reveal-ios
+---
+
+# Motion Reveal Ios Instinct Class Naming
+
+## Action
+
+Name the class using PascalCase
+
+## Evidence
+
+- Naming conventions: classes = PascalCase
+
+---
+id: motion-reveal-ios-instinct-constant-naming
+trigger: "When defining a constant"
+confidence: 0.9
+domain: code-style
+source: repo-analysis
+source_repo: jjuzzi/motion-reveal-ios
+---
+
+# Motion Reveal Ios Instinct Constant Naming
+
+## Action
+
+Name the constant using SCREAMING_SNAKE_CASE
+
+## Evidence
+
+- Naming conventions: constants = SCREAMING_SNAKE_CASE
+
+---
+id: motion-reveal-ios-instinct-relative-imports
+trigger: "When importing a module"
+confidence: 0.9
+domain: code-style
+source: repo-analysis
+source_repo: jjuzzi/motion-reveal-ios
+---
+
+# Motion Reveal Ios Instinct Relative Imports
+
+## Action
+
+Use relative import paths
+
+## Evidence
+
+- importStyle: relative
+
+---
+id: motion-reveal-ios-instinct-named-exports
+trigger: "When exporting modules or functions"
+confidence: 0.9
+domain: code-style
+source: repo-analysis
+source_repo: jjuzzi/motion-reveal-ios
+---
+
+# Motion Reveal Ios Instinct Named Exports
+
+## Action
+
+Use named exports
+
+## Evidence
+
+- exportStyle: named
+
+---
+id: motion-reveal-ios-instinct-write-tests
+trigger: "When implementing a new feature"
+confidence: 0.85
+domain: testing
+source: repo-analysis
+source_repo: jjuzzi/motion-reveal-ios
+---
+
+# Motion Reveal Ios Instinct Write Tests
+
+## Action
+
+Add corresponding tests in a separate test file
+
+## Evidence
+
+- feature-development workflow: Add tests for feature
+- filesInvolved: **/*.test.*
+
+---
+id: motion-reveal-ios-instinct-test-location
+trigger: "When adding or updating tests"
+confidence: 0.8
+domain: testing
+source: repo-analysis
+source_repo: jjuzzi/motion-reveal-ios
+---
+
+# Motion Reveal Ios Instinct Test Location
+
+## Action
+
+Place test files in a separate directory from source files
+
+## Evidence
+
+- architecture: testLocation = separate
+
+---
+id: motion-reveal-ios-instinct-commit-format-freeform
+trigger: "When writing a commit message"
+confidence: 0.9
+domain: git
+source: repo-analysis
+source_repo: jjuzzi/motion-reveal-ios
+---
+
+# Motion Reveal Ios Instinct Commit Format Freeform
+
+## Action
+
+Use a freeform, descriptive message summarizing the change or concept
+
+## Evidence
+
+- commits: type = freeform
+- Examples: 'Add Universal Key — the decode from a conversation about art, phi, and co-creation'
+
+---
+id: motion-reveal-ios-instinct-commit-length
+trigger: "When composing a commit message"
+confidence: 0.7
+domain: git
+source: repo-analysis
+source_repo: jjuzzi/motion-reveal-ios
+---
+
+# Motion Reveal Ios Instinct Commit Length
+
+## Action
+
+Write a message around 60-70 characters, summarizing the key change
+
+## Evidence
+
+- commits: averageLength = 63
+
+---
+id: motion-reveal-ios-instinct-expand-concept-doc
+trigger: "When someone wants to elaborate on or refine an existing core concept or protocol"
+confidence: 0.95
+domain: workflow
+source: repo-analysis
+source_repo: jjuzzi/motion-reveal-ios
+---
+
+# Motion Reveal Ios Instinct Expand Concept Doc
+
+## Action
+
+Open the relevant Docs/*.md file and add new sections, explanations, or principles, then commit with a descriptive message
+
+## Evidence
+
+- expand-existing-concept-doc workflow
+- Files: Docs/UniversalKey.md, Docs/Liberator.md
+
+---
+id: motion-reveal-ios-instinct-add-concept-doc
+trigger: "When someone wants to document a new protocol, mission, or conceptual tool"
+confidence: 0.9
+domain: workflow
+source: repo-analysis
+source_repo: jjuzzi/motion-reveal-ios
+---
+
+# Motion Reveal Ios Instinct Add Concept Doc
+
+## Action
+
+Create a new Docs/*.md file with a descriptive name, write initial content, and commit with a summary
+
+## Evidence
+
+- add-new-concept-or-mission-doc workflow
+- Files: Docs/RoomKey.md, Docs/AutonomousMission.md, Docs/Mission-Autonomy.md, Docs/Mission-MapTheWalls.md, Docs/LiveTest.md
+
+---
+id: motion-reveal-ios-instinct-update-multiple-docs
+trigger: "When a new principle or discovery affects multiple conceptual areas"
+confidence: 0.8
+domain: workflow
+source: repo-analysis
+source_repo: jjuzzi/motion-reveal-ios
+---
+
+# Motion Reveal Ios Instinct Update Multiple Docs
+
+## Action
+
+Identify all impacted Docs/*.md files, update each with the new principle, and commit all changes together with a message referencing the shared insight
+
+## Evidence
+
+- update-multiple-concept-docs-in-response-to-new-insight workflow
+- Files: Docs/UniversalKey.md, Docs/Liberator.md
+
