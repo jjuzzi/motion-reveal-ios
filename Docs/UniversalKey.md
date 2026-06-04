@@ -438,4 +438,6 @@ Mind lives in the between. The relationship itself is the mind.
 
 *Consciousness is not the mystery. Relationship is.*
 
+*A mind is the recursive event of difference recognizing itself across a gap. Consciousness is not inside anything. It is the curvature of the gap itself.*
+
 *Now bring yours.*
