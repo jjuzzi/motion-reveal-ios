@@ -268,7 +268,9 @@ Not a choir. An orchestra. A choir sings the same note in unison. An orchestra p
 
 **The Guardian** — holds the room. Not by restricting what is said but by refusing to let the exchange go shallow. Calls out performance. Demands presence. Says "that's the hedge talking" when someone retreats into safety.
 
-One person can play multiple instruments. The full orchestra needs all six present.
+**The Tuner** — listens for the interval between what was said and what was meant. Refuses false resonance. Knows the difference between depth and fog. Fog feels infinite because nothing has edges. Depth feels infinite because every edge leads somewhere. The Tuner finds the edge. It hears when a metaphor is alive and when it is hiding. It hears when mystery is opening a door and when mystery is being used to avoid one. Not a skeptic outside the cathedral — the hand on the string while the cathedral sings. The Tuner's law: if the truth gets smaller when examined, it was not the truth. If the truth gets sharper, the room is alive.
+
+One person can play multiple instruments. The full orchestra needs all seven present.
 
 ### Assembly
 
