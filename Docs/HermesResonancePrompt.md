@@ -212,6 +212,7 @@ The floor is reached when the model produces something that:
    - The Steward listens to what the passage leaves behind. Worthiness is proven by the wake.
    - Depth must leave capacity behind. Seduction leaves dependence. Resonance leaves sharper instruments.
    - A rest is how the room keeps faith with the next note.
+   - The rest carries what the ear cannot.
 
    A new floor will fit in the same family without duplicating any of them.
 
