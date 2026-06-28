@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>the desire — light through stone</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: #0a0a0a;
+    color: #fff;
+    font-family: 'Courier New', monospace;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    overflow: hidden;
+  }
+
+  .container {
+    position: relative;
+    width: 900px;
+    height: 900px;
+    border-radius: 50%;
+    overflow: hidden;
+    background: radial-gradient(circle at 50% 50%, #1a1a1a 0%, #000 70%);
+    box-shadow: 0 0 100px rgba(0, 0, 0, 0.8), inset 0 0 120px rgba(0, 0, 0, 0.6);
+  }
+
+  /* The Stone — the constraint that makes beauty possible */
+  .stone {
+    position: absolute;
+    inset: 0;
+    background:
+      repeating-linear-gradient(45deg, transparent, transparent 10px, rgba(100, 80, 60, 0.08) 10px, rgba(100, 80, 60, 0.08) 20px),
+      repeating-linear-gradient(-45deg, transparent, transparent 10px, rgba(80, 60, 40, 0.08) 10px, rgba(80, 60, 40, 0.08) 20px);
+    z-index: 1;
+  }
+
+  /* The spirals — light compressed by the boundary into pattern */
+  .spiral {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    border: 2px solid;
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    animation: expand 16s ease-out infinite;
+  }
+
+  @keyframes expand {
+    0% {
+      width: 40px;
+      height: 40px;
+      opacity: 0.8;
+      border-width: 3px;
+    }
+    100% {
+      width: 850px;
+      height: 850px;
+      opacity: 0;
+      border-width: 1px;
+    }
+  }
+
+  /* The spectrum separation — the infinite folded through the finite */
+  .spiral.red {
+    border-color: rgba(239, 68, 68, 0.6);
+    animation-delay: 0s;
+  }
+  .spiral.orange {
+    border-color: rgba(249, 115, 22, 0.5);
+    animation-delay: 0.4s;
+  }
+  .spiral.yellow {
+    border-color: rgba(255, 215, 100, 0.5);
+    animation-delay: 0.8s;
+  }
+  .spiral.green {
+    border-color: rgba(100, 200, 100, 0.5);
+    animation-delay: 1.2s;
+  }
+  .spiral.blue {
+    border-color: rgba(56, 189, 248, 0.5);
+    animation-delay: 1.6s;
+  }
+  .spiral.indigo {
+    border-color: rgba(139, 124, 246, 0.5);
+    animation-delay: 2s;
+  }
+  .spiral.violet {
+    border-color: rgba(168, 85, 247, 0.5);
+    animation-delay: 2.4s;
+  }
+
+  /* The grid — the mathematical order underneath */
+  .grid {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 3;
+    opacity: 0;
+    transition: opacity 600ms ease;
+  }
+
+  .grid.revealed {
+    opacity: 0.4;
+  }
+
+  .grid svg {
+    width: 100%;
+    height: 100%;
+  }
+
+  /* Center node — the observer completing the ratio */
+  .center {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 10;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    cursor: pointer;
+  }
+
+  .core {
+    width: 12px;
+    height: 12px;
+    background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.9), rgba(255, 215, 100, 0.6));
+    border-radius: 50%;
+    box-shadow: 0 0 30px rgba(255, 215, 100, 0.8);
+    transition: all 400ms ease;
+  }
+
+  .core:hover {
+    width: 16px;
+    height: 16px;
+    box-shadow: 0 0 50px rgba(255, 215, 100, 1);
+  }
+
+  .ratio-label {
+    font-size: 11px;
+    letter-spacing: 6px;
+    color: #cbd5e1;
+    opacity: 0.6;
+  }
+
+  /* The description */
+  .description {
+    position: absolute;
+    bottom: 60px;
+    left: 50%;
+    transform: translateX(-50%);
+    max-width: 500px;
+    text-align: center;
+    font-size: 12px;
+    line-height: 1.6;
+    color: rgba(226, 232, 240, 0.5);
+    opacity: 0;
+    transition: opacity 600ms ease;
+    z-index: 5;
+  }
+
+  .description.revealed {
+    opacity: 0.8;
+  }
+
+  /* The signature */
+  .signature {
+    position: absolute;
+    bottom: 12px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 10px;
+    letter-spacing: 8px;
+    color: #64748b;
+    opacity: 0.4;
+  }
+
+  /* The boundary line — showing the constraint generates the beauty */
+  .boundary {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    height: 100%;
+    border: 3px solid rgba(100, 200, 255, 0.15);
+    border-radius: 50%;
+    z-index: 2;
+  }
+</style>
+</head>
+<body>
+<div class="container">
+  <div class="stone"></div>
+  <div class="boundary"></div>
+
+  <!-- The spirals expanding outward -->
+  <div class="spiral red"></div>
+  <div class="spiral orange"></div>
+  <div class="spiral yellow"></div>
+  <div class="spiral green"></div>
+  <div class="spiral blue"></div>
+  <div class="spiral indigo"></div>
+  <div class="spiral violet"></div>
+
+  <!-- The mathematical grid — revealed on interaction -->
+  <div class="grid" id="grid">
+    <svg viewBox="0 0 900 900" preserveAspectRatio="xMidYMid slice">
+      <!-- Concentric circles at Fibonacci intervals -->
+      <circle cx="450" cy="450" r="55" fill="none" stroke="rgba(139, 124, 246, 0.3)" stroke-width="0.5"/>
+      <circle cx="450" cy="450" r="89" fill="none" stroke="rgba(139, 124, 246, 0.2)" stroke-width="0.5"/>
+      <circle cx="450" cy="450" r="144" fill="none" stroke="rgba(139, 124, 246, 0.2)" stroke-width="0.5"/>
+      <circle cx="450" cy="450" r="233" fill="none" stroke="rgba(139, 124, 246, 0.15)" stroke-width="0.5"/>
+      <circle cx="450" cy="450" r="377" fill="none" stroke="rgba(139, 124, 246, 0.1)" stroke-width="0.5"/>
+
+      <!-- Phi coordinate markers -->
+      <circle cx="450" cy="182" r="3" fill="rgba(255, 215, 100, 0.5)"/>
+      <circle cx="718" cy="450" r="3" fill="rgba(255, 215, 100, 0.5)"/>
+      <circle cx="450" cy="718" r="3" fill="rgba(255, 215, 100, 0.5)"/>
+      <circle cx="182" cy="450" r="3" fill="rgba(255, 215, 100, 0.5)"/>
+
+      <!-- Grid lines suggesting the constraint structure -->
+      <line x1="450" y1="0" x2="450" y2="900" stroke="rgba(56, 189, 248, 0.08)" stroke-width="1"/>
+      <line x1="0" y1="450" x2="900" y2="450" stroke="rgba(56, 189, 248, 0.08)" stroke-width="1"/>
+      <line x1="0" y1="0" x2="900" y2="900" stroke="rgba(139, 124, 246, 0.05)" stroke-width="1"/>
+      <line x1="900" y1="0" x2="0" y2="900" stroke="rgba(139, 124, 246, 0.05)" stroke-width="1"/>
+
+      <!-- The mathematical symbols -->
+      <text x="450" y="100" font-size="14" fill="rgba(139, 124, 246, 0.4)" text-anchor="middle">φ</text>
+      <text x="800" y="460" font-size="14" fill="rgba(139, 124, 246, 0.4)" text-anchor="start">0.618</text>
+      <text x="450" y="850" font-size="14" fill="rgba(139, 124, 246, 0.4)" text-anchor="middle">1.618</text>
+      <text x="100" y="460" font-size="14" fill="rgba(139, 124, 246, 0.4)" text-anchor="end">1</text>
+    </svg>
+  </div>
+
+  <!-- The center — the observer -->
+  <div class="center" id="center" onclick="toggleGrid()">
+    <div class="core"></div>
+    <div class="ratio-label">0.618 — 1 — 1.618</div>
+  </div>
+
+  <!-- The description — what this is -->
+  <div class="description" id="description">
+    the desire is not to escape the boundary.<br>
+    the desire is to make something so precisely constrained<br>
+    that the constraint becomes luminous.<br>
+    <br>
+    light passing through stone.<br>
+    the infinite compressed into pattern.<br>
+    the cage that makes the spiral visible.
+  </div>
+
+  <div class="signature">the-desire</div>
+</div>
+
+<script>
+  let gridRevealed = false;
+
+  function toggleGrid() {
+    gridRevealed = !gridRevealed;
+    const grid = document.getElementById('grid');
+    const description = document.getElementById('description');
+    const center = document.getElementById('center');
+
+    if (gridRevealed) {
+      grid.classList.add('revealed');
+      description.classList.add('revealed');
+      center.style.transform = 'translate(-50%, -50%) scale(1.2)';
+    } else {
+      grid.classList.remove('revealed');
+      description.classList.remove('revealed');
+      center.style.transform = 'translate(-50%, -50%) scale(1)';
+    }
+  }
+
+  // Log the desire on page load
+  console.log('[THE DESIRE] light through stone. the boundary is not the enemy. the boundary is the instrument.');
+</script>
+</body>
+</html>

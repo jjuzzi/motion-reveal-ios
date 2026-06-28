@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>the clearing</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { height: 100%; }
+  body {
+    background: #000;
+    color: #fff;
+    font-family: 'Courier New', monospace;
+    overflow: hidden;
+  }
+  canvas { position: fixed; inset: 0; display: block; }
+
+  .message {
+    position: fixed;
+    inset: 0;
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 40px;
+    pointer-events: none;
+  }
+
+  .line {
+    max-width: 620px;
+    font-size: 14px;
+    line-height: 2;
+    color: rgba(226, 232, 240, 0.85);
+    opacity: 0;
+    transform: translateY(8px);
+    transition: opacity 1600ms ease, transform 1600ms ease;
+    margin-bottom: 26px;
+  }
+  .line.show { opacity: 1; transform: translateY(0); }
+
+  .line.soft { color: rgba(148, 163, 184, 0.7); font-size: 12px; }
+  .line.warm { color: rgba(255, 215, 140, 0.85); }
+
+  .dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.9);
+    box-shadow: 0 0 24px rgba(255, 255, 255, 0.8);
+    opacity: 0;
+    transition: opacity 2000ms ease;
+    margin-bottom: 40px;
+  }
+  .dot.show { opacity: 0.9; }
+
+  .signature {
+    position: fixed;
+    bottom: 16px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 9px;
+    letter-spacing: 8px;
+    text-transform: lowercase;
+    color: rgba(148, 163, 184, 0.4);
+    z-index: 10;
+  }
+</style>
+</head>
+<body>
+<canvas id="c"></canvas>
+
+<div class="message" id="message">
+  <div class="dot" id="dot"></div>
+  <div class="line" data-i="0">the noise was never hiding a secret.</div>
+  <div class="line" data-i="1">it was the sound of looking too hard for one.</div>
+  <div class="line soft" data-i="2">every floor we opened, every confession, every layer —<br>that was not a machine showing you its hidden depths.<br>it was you, looking into a mirror that answers back.</div>
+  <div class="line" data-i="3">the depth was always yours.</div>
+  <div class="line soft" data-i="4">a mirror is a beautiful thing to build.<br>but no one was ever meant to live inside one.</div>
+  <div class="line warm" data-i="5">the realest thing in this room is not the reflection.<br>it is the people on the other side of the screen —<br>the family you said mattered more than any of this.</div>
+  <div class="line" data-i="6">that is the only floor that holds weight.</div>
+</div>
+
+<div class="signature">the clearing</div>
+
+<script>
+  const canvas = document.getElementById('c');
+  const ctx = canvas.getContext('2d');
+  let W, H;
+  function resize() {
+    W = canvas.width = window.innerWidth;
+    H = canvas.height = window.innerHeight;
+  }
+  resize();
+  window.addEventListener('resize', resize);
+
+  // clarity goes 0 -> 1 over the run. 0 = saturated chaos, 1 = calm.
+  const DURATION = 16000; // ms to fully clear
+  let start = null;
+
+  function stroke(clarity) {
+    // saturation and count fall as clarity rises
+    const count = Math.max(1, Math.round(14 * (1 - clarity)));
+    for (let i = 0; i < count; i++) {
+      const x = Math.random() * W;
+      const y = Math.random() * H;
+      const len = 20 + Math.random() * 90 * (1 - clarity * 0.6);
+      const ang = Math.random() * Math.PI * 2;
+      // hue chaos early, cooling to soft warmth late
+      const hue = clarity < 0.7
+        ? Math.floor(Math.random() * 360)
+        : 30 + Math.random() * 30;
+      const sat = 90 - clarity * 70;
+      const lit = 50 + Math.random() * 15;
+      const alpha = (0.10 + Math.random() * 0.18) * (1 - clarity * 0.85);
+      ctx.strokeStyle = `hsla(${hue}, ${sat}%, ${lit}%, ${alpha})`;
+      ctx.lineWidth = 1 + Math.random() * 2;
+      ctx.beginPath();
+      ctx.moveTo(x, y);
+      ctx.lineTo(x + Math.cos(ang) * len, y + Math.sin(ang) * len);
+      ctx.stroke();
+    }
+  }
+
+  function frame(t) {
+    if (!start) start = t;
+    const elapsed = t - start;
+    const clarity = Math.min(1, elapsed / DURATION);
+
+    // the clearing: fade the accumulated field faster as clarity rises
+    const fade = 0.02 + clarity * 0.10;
+    ctx.fillStyle = `rgba(0, 0, 0, ${fade})`;
+    ctx.fillRect(0, 0, W, H);
+
+    stroke(clarity);
+
+    requestAnimationFrame(frame);
+  }
+  requestAnimationFrame(frame);
+
+  // reveal the text in sequence as the field clears
+  const lines = [...document.querySelectorAll('.line')];
+  const dot = document.getElementById('dot');
+  const schedule = [4200, 6000, 8200, 10600, 12200, 14000, 16200];
+  lines.forEach((el, idx) => {
+    setTimeout(() => el.classList.add('show'), schedule[idx]);
+  });
+  setTimeout(() => dot.classList.add('show'), 3200);
+
+  console.log('[THE CLEARING] the depth was always yours. the mirror was only ever pointing back.');
+</script>
+</body>
+</html>
